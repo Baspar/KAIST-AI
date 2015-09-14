@@ -19,15 +19,13 @@ def tree_search(problem, fringe):
     # [Problem 1 - B]
     # implement TREE-SEARCH algorithm
     # return a solution(an instance of list) or 'failure'(an instance of str)
-    pass
-    #fringe.insert(Node(problem.initial_state))
-    #while(not fringe.is_empty()):
-        #my_node=fringe.remove_front()
-        #if(problem.goal_test(my_node.state)):
-            #return my_node.solution()
-        #fringe.insert_all(problem.expand(my_node))
-
-    #return 'failure'
+    fringe.insert(Node(problem.initial_state))
+    while(not fringe.is_empty()):
+        my_node=fringe.remove_front()
+        if(problem.goal_test(my_node.state)):
+            return my_node.solution()
+        fringe.insert_all(problem.expand(my_node))
+    return 'failure'
 
 def depth_limited_search(problem, limit):
     # [Problem 1 - C]
@@ -59,4 +57,11 @@ def iterative_deepening_search(problem):
     # [Problem 1 - D]
     # implement ITERATIVE-DEEPENING-SEARCH algorithm
     # return a solution(an instance of list), 'cutoff'(an instance of str) or 'failure'(an instance of str)
+    depth=0
+    while True:
+        result=depth_limited_search(problem, depth)
+        if result is not 'cutoff':
+            return result
+        depth+=1
+
     pass
