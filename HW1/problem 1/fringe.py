@@ -38,24 +38,25 @@ class BreadthFirstSearchFringe(object): # a fringe for the breadth-first search
             elements = []
 
         # initialize a queue with the given elements
-        pass
+        self.elements = collections.deque(elements)
 
     def is_empty(self):
         # return true only if there are no more elements in the queue
-        pass
+        return len(self.elements) == 0
 
     def front(self):
         # return the first element of this queue
-        pass
+        return self.elements[0]
 
     def remove_front(self):
         # return self.front() and remove it from the queue
-        pass
+        return self.elements.pop()
 
     def insert(self, element):
         # insert an element into the queue (consider a type of queue you will use for this fringe)
-        pass
+        self.elements.appendleft(element)
 
     def insert_all(self, elements):
         # insert a set of elements into the queue
-        pass
+        for element in elements:
+            self.insert(element)
