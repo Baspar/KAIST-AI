@@ -19,7 +19,12 @@ def tree_search(problem, fringe):
     # [Problem 1 - B]
     # implement TREE-SEARCH algorithm
     # return a solution(an instance of list) or 'failure'(an instance of str)
-    pass
+    fringe.insert(Node(problem.initial_state))
+    while(not fringe.is_empty()):
+        if(problem.goal_test(fringe.front().state)):
+            return fringe.front().solution()
+        fringe.insert_all(problem.expand(fringe.remove_front()))
+    return "failure"
 
 def depth_limited_search(problem, limit):
     # [Problem 1 - C]
