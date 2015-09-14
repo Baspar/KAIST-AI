@@ -19,18 +19,41 @@ def tree_search(problem, fringe):
     # [Problem 1 - B]
     # implement TREE-SEARCH algorithm
     # return a solution(an instance of list) or 'failure'(an instance of str)
-    fringe.insert(Node(problem.initial_state))
-    while(not fringe.is_empty()):
-        if(problem.goal_test(fringe.front().state)):
-            return fringe.front().solution()
-        fringe.insert_all(problem.expand(fringe.remove_front()))
-    return "failure"
+    pass
+    #fringe.insert(Node(problem.initial_state))
+    #while(not fringe.is_empty()):
+        #my_node=fringe.remove_front()
+        #if(problem.goal_test(my_node.state)):
+            #return my_node.solution()
+        #fringe.insert_all(problem.expand(my_node))
+
+    #return 'failure'
 
 def depth_limited_search(problem, limit):
     # [Problem 1 - C]
     # implement DEPTH-LIMITED-SEARCH algorithm
     # return a solution(an instance of list), 'cutoff'(an instance of str) or 'failure'(an instance of str)
-    pass
+    return recursive_dls(Node(problem.initial_state), problem, limit)
+
+def recursive_dls(node, problem, limit):
+    cutoff_occurred=False
+    if problem.goal_test(node.state):
+        return node.solution()
+    elif node.depth is limit:
+        return 'cutoff'
+    else :
+        for succ in problem.expand(node):
+            result=recursive_dls(succ, problem, limit)
+            if result is 'cutoff':
+                cutoff_occurred=True
+            elif result is not 'failure':
+                return result
+
+    if cutoff_occurred:
+        return 'cutoff'
+    else:
+        return 'failure'
+
 
 def iterative_deepening_search(problem):
     # [Problem 1 - D]
