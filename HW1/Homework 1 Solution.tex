@@ -1,0 +1,65 @@
+\documentclass{report}
+
+\usepackage{amsmath}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+
+
+\begin{document}
+    \chapter{Homework 1}
+        \section{Problem 1}
+            \subsection{1-E}
+                \subsubsection{Depth-first search}
+                    $\begin{array}{|c|c|c|c|c|}
+                        \hline
+                        \text{Test Case} & \text{Execution Time} & \text{Number of generated nodes} & \text{Max depth} & \text {Actionsequence}\\
+                        \hline
+                        \text{1} & \text{0.0002169609s} & \text{8} & \text{2} & \text {['down', 'down']}\\
+                        \text{2} & \text{} & \text{} & \text{} & \text {exceeded}\\
+                        \text{3} & \text{} & \text{} & \text{} & \text {exceeded}\\
+                        \text{4} & \text{} & \text{} & \text{} & \text {exceeded}\\
+                        \text{5} & \text{} & \text{} & \text{} & \text {exceeded}\\
+                        \hline
+                    \end{array}$
+                \subsubsection{Breadth-first search}
+                    $\begin{array}{|c|c|c|c|c|}
+                        \hline
+                        \text{Test Case} & \text{Execution Time} & \text{Number of generated nodes} & \text{Max depth} & \text {Actionsequence}\\
+                        \hline
+                        \text{1} & \text{0.0005390644s} & \text{33} & \text{3} & \text{['down', 'down']} \\
+                        \text{2} & \text{0.0023400784s} & \text{163} & \text{5} & \text{['down', 'left', 'down', 'right']} \\
+                        \text{3} & \text{16.0395569801s} & \text{632601} & \text{13} & \text{['up', 'right', 'up', 'left', 'down', 'right', 'up', 'right', 'down', 'left', 'up', 'left']} \\
+                        \text{4} & \text{0.8144280910s} & \text{42657} & \text{11} & \text{['left', 'left', 'up', 'right', 'up', 'left', 'down', 'right', 'down', 'left']} \\
+                        \text{5} & \text{0.1250188351s} & \text{7511} & \text{9} & \text{['right', 'down', 'right', 'up', 'left', 'left', 'down', 'down']} \\
+                        \hline
+                    \end{array}$
+                \subsubsection{Depth-limited search}
+                    $\begin{array}{|c|c|c|c|c|}
+                        \hline
+                        \text{Test Case} & \text{Execution Time} & \text{Number of generated nodes} & \text{Max depth} & \text {Actionsequence}\\
+                        \hline
+                        \text{1} & \text{0.0004100800s} & \text{38} & \text{5} & \text{['left', 'right', 'down', 'down']} \\
+                        \text{2} & \text{0.0020449162s} & \text{147} & \text{5} & \text{['down', 'left', 'down', 'right']} \\
+                        \text{3} & \text{0.0027320385s} & \text{201} & \text{5} & \text{cutoff} \\
+                        \text{4} & \text{0.0031590462s} & \text{201} & \text{5} & \text{cutoff} \\
+                        \text{5} & \text{0.0041790009s} & \text{201} & \text{5} & \text{cutoff} \\
+                        \hline
+                    \end{array}$
+                \subsubsection{Iterative deepening search}
+                    $\begin{array}{|c|c|c|c|c|}
+                        \hline
+                        \text{Test Case} & \text{Execution Time} & \text{Number of generated nodes} & \text{Max depth} & \text {Actionsequence}\\
+                        \hline
+                        \text{1} & \text{0.0003530979s} & \text{15} & \text{2} & \text{['down', 'down']} \\
+                        \text{2} & \text{0.0013139248s} & \text{91} & \text{4} & \text{['down', 'left', 'down', 'right']} \\
+                        \text{3} & \text{5.8048801422s} & \text{350794} & \text{12} & \text{['up', 'right', 'up', 'left', 'down', 'right', 'up', 'right', 'down', 'left', 'up', 'left']} \\
+                        \text{4} & \text{0.3607029915s} & \text{23045} & \text{10} & \text{['left', 'left', 'up', 'right', 'up', 'left', 'down', 'right', 'down', 'left']} \\
+                        \text{5} & \text{0.0575919151s} & \text{4127} & \text{8} & \text{['right', 'down', 'right', 'up', 'left', 'left', 'down', 'down']} \\
+                        \hline
+                    \end{array}$
+
+
+            \subsection{1-F}
+                Depth-search method is not complete
+\end{document}
