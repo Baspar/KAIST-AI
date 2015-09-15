@@ -1,65 +1,62 @@
-\documentclass{report}
-
+\documentclass{article}
+\usepackage{array}
 \usepackage{amsmath}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[english]{babel}
 
+\newcolumntype{L}{>{\centering\arraybackslash}m{2cm}}
+
 
 \begin{document}
-    \chapter{Homework 1}
-        \section{Problem 1}
-            \subsection{1-E}
-                \subsubsection{Depth-first search}
-                    $\begin{array}{|c|c|c|c|c|}
-                        \hline
-                        \text{Test Case} & \text{Execution Time} & \text{Number of generated nodes} & \text{Max depth} & \text {Actionsequence}\\
-                        \hline
-                        \text{1} & \text{0.0002169609s} & \text{8} & \text{2} & \text {['down', 'down']}\\
-                        \text{2} & \text{} & \text{} & \text{} & \text {exceeded}\\
-                        \text{3} & \text{} & \text{} & \text{} & \text {exceeded}\\
-                        \text{4} & \text{} & \text{} & \text{} & \text {exceeded}\\
-                        \text{5} & \text{} & \text{} & \text{} & \text {exceeded}\\
-                        \hline
-                    \end{array}$
-                \subsubsection{Breadth-first search}
-                    $\begin{array}{|c|c|c|c|c|}
-                        \hline
-                        \text{Test Case} & \text{Execution Time} & \text{Number of generated nodes} & \text{Max depth} & \text {Actionsequence}\\
-                        \hline
-                        \text{1} & \text{0.0005390644s} & \text{33} & \text{3} & \text{['down', 'down']} \\
-                        \text{2} & \text{0.0023400784s} & \text{163} & \text{5} & \text{['down', 'left', 'down', 'right']} \\
-                        \text{3} & \text{16.0395569801s} & \text{632601} & \text{13} & \text{['up', 'right', 'up', 'left', 'down', 'right', 'up', 'right', 'down', 'left', 'up', 'left']} \\
-                        \text{4} & \text{0.8144280910s} & \text{42657} & \text{11} & \text{['left', 'left', 'up', 'right', 'up', 'left', 'down', 'right', 'down', 'left']} \\
-                        \text{5} & \text{0.1250188351s} & \text{7511} & \text{9} & \text{['right', 'down', 'right', 'up', 'left', 'left', 'down', 'down']} \\
-                        \hline
-                    \end{array}$
-                \subsubsection{Depth-limited search}
-                    $\begin{array}{|c|c|c|c|c|}
-                        \hline
-                        \text{Test Case} & \text{Execution Time} & \text{Number of generated nodes} & \text{Max depth} & \text {Actionsequence}\\
-                        \hline
-                        \text{1} & \text{0.0004100800s} & \text{38} & \text{5} & \text{['left', 'right', 'down', 'down']} \\
-                        \text{2} & \text{0.0020449162s} & \text{147} & \text{5} & \text{['down', 'left', 'down', 'right']} \\
-                        \text{3} & \text{0.0027320385s} & \text{201} & \text{5} & \text{cutoff} \\
-                        \text{4} & \text{0.0031590462s} & \text{201} & \text{5} & \text{cutoff} \\
-                        \text{5} & \text{0.0041790009s} & \text{201} & \text{5} & \text{cutoff} \\
-                        \hline
-                    \end{array}$
-                \subsubsection{Iterative deepening search}
-                    $\begin{array}{|c|c|c|c|c|}
-                        \hline
-                        \text{Test Case} & \text{Execution Time} & \text{Number of generated nodes} & \text{Max depth} & \text {Actionsequence}\\
-                        \hline
-                        \text{1} & \text{0.0003530979s} & \text{15} & \text{2} & \text{['down', 'down']} \\
-                        \text{2} & \text{0.0013139248s} & \text{91} & \text{4} & \text{['down', 'left', 'down', 'right']} \\
-                        \text{3} & \text{5.8048801422s} & \text{350794} & \text{12} & \text{['up', 'right', 'up', 'left', 'down', 'right', 'up', 'right', 'down', 'left', 'up', 'left']} \\
-                        \text{4} & \text{0.3607029915s} & \text{23045} & \text{10} & \text{['left', 'left', 'up', 'right', 'up', 'left', 'down', 'right', 'down', 'left']} \\
-                        \text{5} & \text{0.0575919151s} & \text{4127} & \text{8} & \text{['right', 'down', 'right', 'up', 'left', 'left', 'down', 'down']} \\
-                        \hline
-                    \end{array}$
+    \section{Problem 1}
+        \subsection{1-E}
+            \subsubsection{Depth-first search}
+                \begin{tabular}{|L|L|L|L|L|}\hline
+                    Test Case & Execution Time & Number of generated nodes & Max depth & Action sequence\\\hline
+                    1 & 0.0002169609 & 8 & 2 & ['down', 'down']\\\hline
+                    2 &  &  &  & exceeded\\\hline
+                    3 &  &  &  & exceeded\\\hline
+                    4 &  &  &  & exceeded\\\hline
+                    5 &  &  &  & exceeded\\\hline
+                \end{tabular}
+            \subsubsection{Breadth-first search}
+                \begin{tabular}{|L|L|L|L|L|}\hline
+                    Test Case & Execution Time & Number of generated nodes & Max depth & Action sequence\\\hline
+                    1 & 0.0005390644 & 33 & 3 & ['down', 'down'] \\\hline
+                    2 & 0.0023400784 & 163 & 5 & ['down', 'left', 'down', 'right'] \\\hline
+                    3 & 16.0395569801 & 632601 & 13 & ['up', 'right', 'up', 'left', 'down', 'right', 'up', 'right', 'down', 'left', 'up', 'left'] \\\hline
+                    4 & 0.8144280910 & 42657 & 11 & ['left', 'left', 'up', 'right', 'up', 'left', 'down', 'right', 'down', 'left'] \\\hline
+                    5 & 0.1250188351 & 7511 & 9 & ['right', 'down', 'right', 'up', 'left', 'left', 'down', 'down'] \\\hline
+                \end{tabular}
+            \subsubsection{Depth-limited search}
+                \begin{tabular}{|L|L|L|L|L|}\hline
+                    Test Case & Execution Time & Number of generated nodes & Max depth & Action sequence\\\hline
+                    1 & 0.0004100800 & 38 & 5 & ['left', 'right', 'down', 'down'] \\\hline
+                    2 & 0.0020449162 & 147 & 5 & ['down', 'left', 'down', 'right'] \\\hline
+                    3 & 0.0027320385 & 201 & 5 & cutoff \\\hline
+                    4 & 0.0031590462 & 201 & 5 & cutoff \\\hline
+                    5 & 0.0041790009 & 201 & 5 & cutoff \\\hline
+                \end{tabular}
+            \subsubsection{Iterative deepening search}
+                \begin{tabular}{|L|L|L|L|L|}\hline
+                    Test Case & Execution Time & Number of generated nodes & Max depth & Action sequence\\\hline
+                    1 & 0.0003530979 & 15 & 2 & ['down', 'down'] \\\hline
+                    2 & 0.0013139248 & 91 & 4 & ['down', 'left', 'down', 'right'] \\\hline
+                    3 & 5.8048801422 & 350794 & 12 & ['up', 'right', 'up', 'left', 'down', 'right', 'up', 'right', 'down', 'left', 'up', 'left'] \\\hline
+                    4 & 0.3607029915 & 23045 & 10 & ['left', 'left', 'up', 'right', 'up', 'left', 'down', 'right', 'down', 'left'] \\\hline
+                    5 & 0.0575919151 & 4127 & 8 & ['right', 'down', 'right', 'up', 'left', 'left', 'down', 'down'] \\\hline
+                \end{tabular}
+        \subsection{1-F}
+            Depth-search method is not complete, because when searching, the algorithm will go back on a branch which doesn't contains the goal.\\
+            Since there is no ``limit'', the algorithm can do an infinity loop
+        \subsection{1-G}
+            The result of depth-limited search is not optimal, in particular in the first test-case:
+            \begin{itemize}
+                \item \textbf{Depth-limit algorithm} find ['left', 'right', 'down', 'down']
+                \item \textbf{Every others algorithm} find ['down', 'down']
+            \end{itemize}
+            In fact, the algorithm will try to reach the limit fixed until trying another ``branch''.\\
+            That's the reason why it can sometime found a solution in a branch, before findind the ``most efficient'' solution, which was on another branch that could have been calculated next.
 
-
-            \subsection{1-F}
-                Depth-search method is not complete
 \end{document}
