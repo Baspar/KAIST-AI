@@ -15,10 +15,10 @@
                 \begin{tabular}{|L|L|L|L|L|}\hline
                     Test Case & Execution Time & Number of generated nodes & Max depth & Action sequence\\\hline
                     1 & 0.0002169609 & 8 & 2 & ['down', 'down']\\\hline
-                    2 &  &  &  & exceeded\\\hline
-                    3 &  &  &  & exceeded\\\hline
-                    4 &  &  &  & exceeded\\\hline
-                    5 &  &  &  & exceeded\\\hline
+                    2 & exceeded &  &  & \\\hline
+                    3 & exceeded &  &  & \\\hline
+                    4 & exceeded &  &  & \\\hline
+                    5 & exceeded &  &  & \\\hline
                 \end{tabular}
             \subsubsection{Breadth-first search}
                 \begin{tabular}{|L|L|L|L|L|}\hline
@@ -63,10 +63,17 @@
             \subsubsection{Greedy Bast-first search}
                 \begin{tabular}{|L|L|L|L|L|}\hline
                     Test Case & Execution Time & Number of generated nodes & Max depth & Action sequence\\\hline
+                    0.0005700588 & 8 & 2 & ['down', 'down'] \\\hline
+                    0.0011360645 & 13 & 4 & ['down', 'left', 'down', 'right'] \\\hline
+                    0.0019960403 & 37 & 12 & ['up', 'up', 'right', 'down', 'left', 'up', 'right', 'right', 'down', 'left', 'up', 'left'] \\\hline
+                    0.0019421577 & 30 & 10 & ['left', 'left', 'up', 'right', 'up', 'left', 'down', 'right', 'down', 'left'] \\\hline
+                    5 & exceeded &  &  & \\\hline
                 \end{tabular}
             \subsubsection{A* search}
                 \begin{tabular}{|L|L|L|L|L|}\hline
                     Test Case & Execution Time & Number of generated nodes & Max depth & Action sequence\\\hline
                 \end{tabular}
         \subsection{2-F}
+            Greedy best-first search method is not complete because with such an algorithm, the best solution may sometime leads to an ``impossible dead end''.\\
+            But for solving, perhaps the algorithm need to ``go in a worse situation'', but which can permit next to find the goal
 \end{document}
