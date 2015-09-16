@@ -9,6 +9,14 @@
 
 
 \begin{document}
+    \title{\textbf{''Introduction to Artificial Intelligence: Homework \#1''}}
+    \author{LAINE Bastien \#20156441}
+    \date{Sept. 16th 2015}
+    \maketitle
+    \tableofcontents
+
+    \newpage
+
     \section{Problem 1}
         \subsection{1-E}
             \subsubsection{Depth-first search}
@@ -63,20 +71,20 @@
             \subsubsection{Greedy Bast-first search}
                 \begin{tabular}{|L|L|L|L|L|}\hline
                     Test Case & Execution Time & Number of generated nodes & Max depth & Action sequence\\\hline
-                    0.0005700588 & 8 & 2 & ['down', 'down'] \\\hline
-                    0.0011360645 & 13 & 4 & ['down', 'left', 'down', 'right'] \\\hline
-                    0.0019960403 & 37 & 12 & ['up', 'up', 'right', 'down', 'left', 'up', 'right', 'right', 'down', 'left', 'up', 'left'] \\\hline
-                    0.0019421577 & 30 & 10 & ['left', 'left', 'up', 'right', 'up', 'left', 'down', 'right', 'down', 'left'] \\\hline
+                    1 & 0.0005700588 & 8 & 2 & ['down', 'down'] \\\hline
+                    2 & 0.0011360645 & 13 & 4 & ['down', 'left', 'down', 'right'] \\\hline
+                    3 & 0.0019960403 & 37 & 12 & ['up', 'up', 'right', 'down', 'left', 'up', 'right', 'right', 'down', 'left', 'up', 'left'] \\\hline
+                    4 & 0.0019421577 & 30 & 10 & ['left', 'left', 'up', 'right', 'up', 'left', 'down', 'right', 'down', 'left'] \\\hline
                     5 & exceeded &  &  & \\\hline
                 \end{tabular}
             \subsubsection{A* search}
                 \begin{tabular}{|L|L|L|L|L|}\hline
                     Test Case & Execution Time & Number of generated nodes & Max depth & Action sequence\\\hline
-                    0.0005021095 & 8 & 2 & ['down', 'down'] \\\hline
-                    0.0005738735 & 13 & 4 & ['down', 'left', 'down', 'right'] \\\hline
-                    0.0029959679 & 54 & 12 & ['up', 'up', 'right', 'down', 'left', 'up', 'right', 'right', 'down', 'left', 'up', 'left'] \\\hline
-                    0.0017831326 & 35 & 10 & ['left', 'left', 'up', 'right', 'up', 'left', 'down', 'right', 'down', 'left'] \\\hline
-                    0.0031859875 & 64 & 8 & ['right', 'down', 'right', 'up', 'left', 'left', 'down', 'down'] \\\hline
+                    1 & 0.0005021095 & 8 & 2 & ['down', 'down'] \\\hline
+                    2 & 0.0005738735 & 13 & 4 & ['down', 'left', 'down', 'right'] \\\hline
+                    3 & 0.0029959679 & 54 & 12 & ['up', 'up', 'right', 'down', 'left', 'up', 'right', 'right', 'down', 'left', 'up', 'left'] \\\hline
+                    4 & 0.0017831326 & 35 & 10 & ['left', 'left', 'up', 'right', 'up', 'left', 'down', 'right', 'down', 'left'] \\\hline
+                    5 & 0.0031859875 & 64 & 8 & ['right', 'down', 'right', 'up', 'left', 'left', 'down', 'down'] \\\hline
                 \end{tabular}
         \subsection{2-F}
             Greedy best-first search method is not complete because with such an algorithm, the best solution may sometime leads to an ``impossible dead end''.\\
