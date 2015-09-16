@@ -100,6 +100,6 @@ puzzles = [
 
 for index, puzzle in enumerate(puzzles):
     print '# Test', (index + 1)
-    run_search('Greedy best-first search', puzzle, tree_search, puzzle, GreedyBestFirstSearchFringe(puzzle.goal_state))
-    #run_search('A-star search', puzzle, tree_search, puzzle, AStarSearchFringe(puzzle.goal_state))
+    #run_search('Greedy best-first search', puzzle, tree_search, puzzle, GreedyBestFirstSearchFringe(puzzle.goal_state))
+    run_search('A-star search', puzzle, tree_search, puzzle, AStarSearchFringe(puzzle.goal_state))
     print ''
