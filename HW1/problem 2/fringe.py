@@ -1,11 +1,12 @@
 # coding: utf-8
 
 import collections
+import math
 
 def calculate_manhattan_distance(location1, location2):
     # [Problem 2 - A]
     # calculate and return a Manhattan distance between location1 and location2
-    pass
+    return math.abs(location1[0]-location2[0])+math.abs(location1[1]-location2[1])
 
 def calculate_total_manhattan_distance(state1, state2):
     # [Problem 2 - B]
