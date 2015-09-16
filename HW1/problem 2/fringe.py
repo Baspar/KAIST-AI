@@ -1,6 +1,6 @@
 # coding: utf-8
 
-import collections
+#import collections
 import math
 
 def calculate_manhattan_distance(location1, location2):
@@ -11,7 +11,27 @@ def calculate_manhattan_distance(location1, location2):
 def calculate_total_manhattan_distance(state1, state2):
     # [Problem 2 - B]
     # calculate and return a total Manhattan distance between state1 and state2
-    pass
+    locations1=[ [0, 0], [0, 0], [0, 0],
+                 [0, 0], [0, 0], [0, 0],
+                 [0, 0], [0, 0], [0, 0], ]
+    locations2=[ [0, 0], [0, 0], [0, 0],
+                 [0, 0], [0, 0], [0, 0],
+                 [0, 0], [0, 0], [0, 0], ]
+
+
+    for i in range(3):
+        for j in range(3):
+            my_state1=state1.tiles[i][j]
+            locations1[my_state1]=[i, j]
+
+            my_state2=state2.tiles[i][j]
+            locations2[my_state2]=[i, j]
+
+    total_distance=0
+    for i in range(8):
+        total_distance+=calculate_manhattan_distance(locations1[1+i], locations2[1+i])
+
+    return total_distance
 
 # [Problem 2 - C]
 class GreedyBestFirstSearchFringe(object): # a fringe for the greedy best-first search
