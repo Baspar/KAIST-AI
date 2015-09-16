@@ -18,4 +18,10 @@ class Node(object):
 def tree_search(problem, fringe):
     # implement the TREE-SEARCH algorithm
     # return a solution(an instance of list) or 'failure'(an instance of str)
-    pass
+    fringe.insert(Node(problem.initial_state))
+    while(not fringe.is_empty()):
+        my_node=fringe.remove_front()
+        if(problem.goal_test(my_node.state)):
+            return my_node.solution()
+        fringe.insert_all(problem.expand(my_node))
+    return 'failure'
