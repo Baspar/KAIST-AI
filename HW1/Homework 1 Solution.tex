@@ -72,6 +72,11 @@
             \subsubsection{A* search}
                 \begin{tabular}{|L|L|L|L|L|}\hline
                     Test Case & Execution Time & Number of generated nodes & Max depth & Action sequence\\\hline
+                    0.0005021095 & 8 & 2 & ['down', 'down'] \\\hline
+                    0.0005738735 & 13 & 4 & ['down', 'left', 'down', 'right'] \\\hline
+                    0.0029959679 & 54 & 12 & ['up', 'up', 'right', 'down', 'left', 'up', 'right', 'right', 'down', 'left', 'up', 'left'] \\\hline
+                    0.0017831326 & 35 & 10 & ['left', 'left', 'up', 'right', 'up', 'left', 'down', 'right', 'down', 'left'] \\\hline
+                    0.0031859875 & 64 & 8 & ['right', 'down', 'right', 'up', 'left', 'left', 'down', 'down'] \\\hline
                 \end{tabular}
         \subsection{2-F}
             Greedy best-first search method is not complete because with such an algorithm, the best solution may sometime leads to an ``impossible dead end''.\\
