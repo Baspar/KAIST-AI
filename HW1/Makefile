@@ -4,7 +4,7 @@ doc:
 	pdflatex "Homework 1 Solution.tex" \ pdflatex "Homework 1 Solution.tex"
 
 clean: pseudo-clean
-	rm -f *.pdf
+	rm -f "Homework 1 Solution.pdf"
 
 pseudo-clean:
-	rm -f *.aux *.log *.toc
+	rm -f "Homework 1 Solution.aux" "Homework 1 Solution.log" "Homework 1 Solution.toc"
