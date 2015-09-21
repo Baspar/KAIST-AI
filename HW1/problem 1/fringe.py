@@ -16,7 +16,7 @@ class DepthFirstSearchFringe(object): # a fringe for the depth-first search
 
     def front(self):
         # return the first element of this queue
-        return self.elements[0]
+        return self.elements[-1]
 
     def remove_front(self):
         # return self.front() and remove it from the queue
@@ -46,7 +46,7 @@ class BreadthFirstSearchFringe(object): # a fringe for the breadth-first search
 
     def front(self):
         # return the first element of this queue
-        return self.elements[0]
+        return self.elements[-1]
 
     def remove_front(self):
         # return self.front() and remove it from the queue
