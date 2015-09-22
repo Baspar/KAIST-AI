@@ -28,7 +28,7 @@ def calculate_total_manhattan_distance(state1, state2):
             locations2[my_state2]=[i, j]
 
     total_distance=0
-    for i in range(8):
+    for i in range(7):
         total_distance+=calculate_manhattan_distance(locations1[1+i], locations2[1+i])
 
     return total_distance
