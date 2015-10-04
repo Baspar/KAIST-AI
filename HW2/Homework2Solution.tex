@@ -1,14 +1,14 @@
 \documentclass{article}
 \usepackage{array}
 \usepackage{amsmath}
+\usepackage{color}
 \usepackage{minted}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[english]{babel}
 \usepackage[makeroom]{cancel}
 
-\newcolumntype{L}{>{\centering\arraybackslash}m{2cm}}
-
+\definecolor{bg}{rgb}{0.95,0.95,0.95}
 
 \begin{document}
     \title{\textbf{''Introduction to Artificial Intelligence: Homework \#2''}}
@@ -53,10 +53,27 @@
             For this example, the choice of heuristic doesn't really matters, since as soon as we choose a variable, and a value for it, the system will be totally constraint.\\
             But let's choose ``Least-constraining-value'' which lead us to choose variable $F$
         \subsection{1-D}
+    \newpage
     \section{Problem 2}
         \subsection{2-A}
-            %See code in file $squares.py$.
-            \inputminted{python}{square.py}
+            \subsubsection{Code}
+                \inputminted[linenos=true]{python}{square.py}
+            \subsubsection{Results without ordering constraint}
+                \begin{quote}
+                    Length of squares\\
+                    (1, 2, 3, 4, 5, 8, 9, 14, 16, 18, 20, 29, 30, 31, 33, 35, 38, 39, 43, 51, 55, 56, 64, 81, 175)\\
+                    The length of the 17th square is 38\\
+                    Time taken: 0.4
+                \end{quote}
+            \subsubsection{Results with ordering constraint}
+                \begin{quote}
+                    Length of squares\\
+                    (1, 2, 3, 4, 5, 8, 9, 14, 16, 18, 20, 29, 30, 31, 33, 35, 38, 39, 43, 51, 55, 56, 64, 81, 175)\\
+                    The length of the 17th square is 38\\
+                    Time taken: 0.0
+                \end{quote}
+
+
         \subsection{2-B}
             The addition of the orderig constraint make the search faster (from 0.4s to 0.0s).\\
             Indeed, by adding this contraint, we delete a lot of branch during the search. For instance
