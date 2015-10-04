@@ -1,0 +1,64 @@
+\documentclass{article}
+\usepackage{array}
+\usepackage{amsmath}
+\usepackage{minted}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage[makeroom]{cancel}
+
+\newcolumntype{L}{>{\centering\arraybackslash}m{2cm}}
+
+
+\begin{document}
+    \title{\textbf{''Introduction to Artificial Intelligence: Homework \#2''}}
+    \author{LAINE Bastien \#20156441}
+    \date{Sept. 16th 2015}
+    \maketitle
+    \tableofcontents
+
+    \newpage
+
+    \section{Problem 1}
+        \subsection{1-A}
+            To begin with, let's set some variable:
+            \begin{itemize}
+                \item F stands for the place of Frank
+                \item C stands for the place of Clark
+                \item K stands for the place of Karen
+                \item I stands for the place of Isabel
+                \item E stands for the place of Elly
+            \end{itemize}
+            Having so, we can then represent every contraints by the following token
+            \begin{enumerate}
+                \item $F\ne C\ne K\ne I\ne E$
+                \item $|C-K|\ne 1$
+                \item $|E-K|\ne 1$\\
+                    $|E-F|\ne 1$
+                \item $|I-K|\ne 1$\\
+                    $|I-E|\ne 1$
+                \item $I-F=1$
+                \item $C-I=1$
+            \end{enumerate}
+        \subsection{1-B}
+            After enforcing arc consistency, the remaining value of the domain are:\\
+            $\begin{array}{|c|c|c|c|c|}
+                \hline
+                F&C&K&I&E\\
+                \hline
+                1,2,3,\xcancel{4},\xcancel{5}&\xcancel{1},\xcancel{2},3,4,5&1,2,\xcancel{3},\xcancel{4},5&\xcancel{1},2,3,4,\xcancel{5}&1,\xcancel{2},\xcancel{3},4,5\\
+                \hline
+            \end{array}$
+        \subsection{1-C}
+            For this example, the choice of heuristic doesn't really matters, since as soon as we choose a variable, and a value for it, the system will be totally constraint.\\
+            But let's choose ``Least-constraining-value'' which lead us to choose variable $F$
+        \subsection{1-D}
+    \section{Problem 2}
+        \subsection{2-A}
+            %See code in file $squares.py$.
+            \inputminted{python}{square.py}
+        \subsection{2-B}
+            The addition of the orderig constraint make the search faster (from 0.4s to 0.0s).\\
+            Indeed, by adding this contraint, we delete a lot of branch during the search. For instance
+
+\end{document}
