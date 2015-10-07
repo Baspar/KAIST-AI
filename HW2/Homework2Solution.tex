@@ -1,4 +1,5 @@
 \documentclass{article}
+\usepackage[usenames,dvipsnames]{xcolor}
 \usepackage{array}
 \usepackage{amsmath}
 \usepackage{color}
@@ -50,9 +51,38 @@
                 \hline
             \end{array}$
         \subsection{1-C}
-            For this example, the choice of heuristic doesn't really matters, since as soon as we choose a variable, and a value for it, the system will be totally constraint.\\
-            But let's choose ``Least-constraining-value'' which lead us to choose variable $F$
+            But let's choose ``More-constraining-constraint'' which lead us to choose variable $I$, which have 4 constraint\\
+            Then we will choose the `Less-constraint-value`` : 3
         \subsection{1-D}
+
+            After selection the value 3 for the variable $I$, our domain looks like that:\\
+            $\begin{array}{|c|c|c|c|c|}
+                \hline
+                F&C&K&I&E\\
+                \hline
+                1,2,3,\xcancel{4},\xcancel{5}&\xcancel{1},\xcancel{2},3,4,5&1,2,\xcancel{3},\xcancel{4},5&\xcancel{1},\xcancel{2},3,\xcancel{4},\xcancel{5}&1,\xcancel{2},\xcancel{3},4,5\\
+                \hline
+            \end{array}$\\
+
+            Then according to contraints \#5 and \#6, we can select $F$ and $C$\\
+            $\begin{array}{|c|c|c|c|c|}
+                \hline
+                F&C&K&I&E\\
+                \hline
+                \xcancel{1},2,\xcancel{3},\xcancel{4},\xcancel{5} & \xcancel{1},\xcancel{2},\xcancel{3},4,\xcancel{5} & 1,2,\xcancel{3},\xcancel{4},5 & \xcancel{1},\xcancel{2},3,\xcancel{4},\xcancel{5} & 1,\xcancel{2},\xcancel{3},4,5\\
+                \hline
+            \end{array}$\\
+
+            Then by applying constraint \#1 and \#2, we can establish the final domain of our problem:\\
+            $\begin{array}{|c|c|c|c|c|}
+                \hline
+                F&C&K&I&E\\
+                \hline
+                \xcancel{1},2,\xcancel{3},\xcancel{4},\xcancel{5} & \xcancel{1},\xcancel{2},\xcancel{3},4,\xcancel{5} & 1,\xcancel{2},\xcancel{3},\xcancel{4},\xcancel{5} & \xcancel{1},\xcancel{2},3,\xcancel{4},\xcancel{5} & \xcancel{1},\xcancel{2},\xcancel{3},\xcancel{4},5\\
+                \Downarrow&\Downarrow&\Downarrow&\Downarrow&\Downarrow\\
+                2&4&1&3&5\\
+                \hline
+            \end{array}$
     \newpage
     \section{Problem 2}
         \subsection{2-A}
@@ -75,7 +105,35 @@
 
 
         \subsection{2-B}
-            The addition of the orderig constraint make the search faster (from 0.4s to 0.0s).\\
-            Indeed, by adding this contraint, we delete a lot of branch during the search. For instance
+            The addition of the ordering constraint make the search faster (from 0.4s to 0.0s).\\
+            Indeed, by adding this contraint, we delete a lot of branch during the search.
+
+            For instance, if we try to look at $squares[2]=k$, that mean we can avoid to test every $squares[2+i]<k+i$
+
+            To represent by an array:\\
+            $\begin{array}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+                \hline
+                square\backslash size&1&2&\dots&k-2&k-1&k&k+1&k+2&k+3&k+4&\dots&top-1&top\\
+                \hline
+                squares[2]&\textcolor{red}{N}&\textcolor{red}{N}&\dots&\textcolor{red}{N}&\textcolor{red}{N}&\textcolor{green}{Y}&\textcolor{red}{N}&\textcolor{red}{N}&\textcolor{red}{N}&\textcolor{red}{N}&\dots&\textcolor{red}{N}&\textcolor{red}{N}\\
+                squares[3]&\textcolor{red}{N}&\textcolor{red}{N}&\dots&\textcolor{red}{N}&\textcolor{red}{N}&\textcolor{red}{N}&\textcolor{orange}{C}&\textcolor{orange}{C}&\textcolor{orange}{C}&\textcolor{orange}{C}&\dots&\textcolor{orange}{C}&\textcolor{orange}{C}\\
+                squares[4]&\textcolor{red}{N}&\textcolor{red}{N}&\dots&\textcolor{red}{N}&\textcolor{red}{N}&\textcolor{red}{N}&\textcolor{red}{N}&\textcolor{orange}{C}&\textcolor{orange}{C}&\textcolor{orange}{C}&\dots&\textcolor{orange}{C}&\textcolor{orange}{C}\\
+                squares[5]&\textcolor{red}{N}&\textcolor{red}{N}&\dots&\textcolor{red}{N}&\textcolor{red}{N}&\textcolor{red}{N}&\textcolor{red}{N}&\textcolor{red}{N}&\textcolor{orange}{C}&\textcolor{orange}{C}&\dots&\textcolor{orange}{C}&\textcolor{orange}{C}\\
+                squares[6]&\textcolor{red}{N}&\textcolor{red}{N}&\dots&\textcolor{red}{N}&\textcolor{red}{N}&\textcolor{red}{N}&\textcolor{red}{N}&\textcolor{red}{N}&\textcolor{red}{N}&\textcolor{orange}{C}&\dots&\textcolor{orange}{C}&\textcolor{orange}{C}\\
+                squares[7]&\textcolor{red}{N}&\textcolor{red}{N}&\dots&\textcolor{red}{N}&\textcolor{red}{N}&\textcolor{red}{N}&\textcolor{red}{N}&\textcolor{red}{N}&\textcolor{red}{N}&\textcolor{red}{N}&\dots&\textcolor{orange}{C}&\textcolor{orange}{C}\\
+                \vdots&\vdots&\vdots&\vdots&\vdots&\vdots&\vdots&\vdots&\vdots&\vdots&\vdots&\vdots&\vdots&\vdots\\
+                \hline
+            \end{array}$
+
+            Where:
+            \begin{itemize}
+                \item \textcolor{red}{N} means ``no need to be tested'' (i.e. we are sure it won't work)
+                \item \textcolor{green}{Y} means ``no need to be tested'' (i.e. our assumption)
+                \item \textcolor{orange}{C} means ``to be checked''
+            \end{itemize}
+
+            We can see that with almost no calculus, we can eliminate a huge quantity of test cases.
+
+
 
 \end{document}
