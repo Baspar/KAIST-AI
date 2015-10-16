@@ -22,23 +22,65 @@
 
     \section{Problem 1}
         \subsection{1-A}
+            \begin{enumerate}
+                \item 3: Indeed, $C$ has to be true (else $x\land C$ would be false). Then, since we want $A\lor B$ to be true, we know there is only 3 ways to make it true ((True, True), (False, True), (True, False)).\\
+                    In that case, there is only 3 models for that sentence (Or $3*2=6$ if we consider that $D$ is still part of the problem)
+                \item 1: Since we have $\lnot A\land B\land C\land D$, we know that (A, B, C, D) has to be (False, True, True, True).\\
+                    Then, it only remain $(A\Rightarrow B)$. Since we have already constrained our 4 letters, we can just check if this sentence is correct. Hopefully, it is. (If it wasn't, there were only 0 models for that sentence, so the problem woudl be unsatisfiable)
+            \end{enumerate}
+
         \subsection{1-B}
+            \begin{enumerate}
+                \item Neither: The sentence cannot be:
+                    \begin{itemize}
+                        \item Unsatisfiable since (Smoke=True, Fire=True) is True
+                        \item Valid since (Smoke=True, Fire=False) is False
+                    \end{itemize}
+                \item Unsatisfiable : Since we have $Fire\land Fire$, we cannot find a value for $Fire$ such that the sentece is correct. So we cannot find any model in which this sentence is true, so it is unsatisfiable.
+                \item Valid: To do that, let us manipulate the sentence:\\
+                    \[\begin{array}{r c l}
+                            ((Smoke\land Heat)\Rightarrow Fire) & \Leftrightarrow & \lnot (Smoke\land Heat)\lor Fire\\
+                            &\Leftrightarrow&\lnot Smoke \lor \lnot Heat \lor Fire\\
+                            &\Leftrightarrow&\lnot Smoke \lor \lnot Heat \lor Fire \lor Fire\\
+                            &\Leftrightarrow&(\lnot Smoke \lor Fire) \lor (\lnot Heat \lor Fire)\\
+                            &\Leftrightarrow& (Smoke \Rightarrow Fire)\lor(Heat\Rightarrow Fire)\\
+                    \end{array}\]
+            \end{enumerate}
+
         \subsection{1-C}
         \subsection{1-D}
+            \begin{enumerate}
+                \item $\exists x\:\forall y\: Dog(x)\land Human(y)\land Loves(x, y)$
+                \item $\exists x\: \forall y\: Barber(x)\land ((Shaves(x, y) \lor Shaves(y, y)))$
+                \item $\forall x,\: y\: Smart(x)\land StudiesHard(x)\land (\lnot Smart(y)\lor \lnot StudiesHard(y))) \Rightarrow  gt(Grade(x), Grade(y))$
+            \end{enumerate}
+
     \section{Problem 2}
         \subsection{2-A}
+            $Wrote(Gershwin, The Man I Love)$
         \subsection{2-B}
+            $\lnot Wrote(Gershwin, Eleanor Rigby)$
         \subsection{2-C}
+            $Wrote(Gershwin, The Man I Love)\lor Wrote(McCartney, The Man I Love)$
         \subsection{2-D}
+            $\exists song\: Wrote(Joe, song)$
         \subsection{2-E}
+            $\exists disk\: Owns(Joe, disk)\land CopyOf(disk, Revolver)$
         \subsection{2-F}
+            $\forall song\: Sings(McCartney, song, Revolver) \Rightarrow Wrote(McCartney, song)$
         \subsection{2-G}
+            $\forall song\: \exists singer\: Sings(singer, song, Revolver) \Rightarrow \lnot Wrote(Gershwin, song)$
         \subsection{2-H}
+            $\forall song\: Wrote(Gershwin, song) \Rightarrow \exists album, singer\: Sings(singer, song, album)$
         \subsection{2-I}
+            $\exists album\: \forall song\: Wrote(Joe, song) \Rightarrow \exists singer\: Sings(singer, song, album)$
         \subsection{2-J}
+            $\exists disk\: (Owns(Joe, disk)\land\exists album\: (CopyOf(disk, album)\land Sings(Billy Holiday, The Man I Love, album))$
         \subsection{2-K}
+            $\forall album\: (\exists song\: Sings(McCartney, song, album))\Rightarrow(\exists disk\: CopyOf(disk, album)\land Owns(Joe, disk))$
         \subsection{2-L}
-    \section{Problem 5}
+            $\forall song\: \exists album, singer\: (Sings(singer, osng, album)\land(singer!=Billy Holiday) \Leftrightarrow (\exists disk\: CopyOf(disk, album)\land Owns(Joe, disk))$
+    \section{Problem 3}
         \subsection{3-A}
         \subsection{3-B}
 \end{document}
