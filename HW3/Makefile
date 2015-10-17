@@ -1,12 +1,10 @@
-all: graph doc move pseudo-clean
+all: doc move pseudo-clean
 
-graph: Backward.uml
+graph:
+	plantuml *.uml
 
-doc:
+doc: graph
 	pdflatex  --shell-escape "Homework3Solution.tex" && pdflatex --shell-escape "Homework3Solution.tex"
-
-%.uml:
-	plantuml $@
 
 clean: pseudo-clean
 	rm -f "20156441_bastien.pdf" "Homework3Solution.pdf"
