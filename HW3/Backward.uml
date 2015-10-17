@@ -1,0 +1,38 @@
+@startuml
+skinparam shadowing false
+skinparam stereotypeCBackgroundColor #5B9BD5
+
+skinparam usecase{
+    BackgroundColor #EEEEEE
+    BorderColor #9E9E9E
+    ArrowColor #6CA43E
+    ActorBorderColor #6CA43E
+}
+
+(Property 8) as (_1)#grey
+(Property 8) as (_3)#grey
+(Property 7) as (_4)#grey
+
+(5≤4+9) as (1)
+(5≤y) as (2)
+usecase 3 as "y≤4+5
+==
+5+0≤4+5"
+usecase 4 as "5+0≤z
+==
+5+0≤9+4"
+(z≤4+9) as (5)
+(5≤9) as (6)
+(0≤4) as (7)
+
+(1) -- (_1)
+(_1) --> (2) : {y/5+0}
+(_1) --> (3)
+(3) -- (_3)
+(_3) --> (4)
+(_3) --> (5) : {z/9+4}
+(4) -- (_4)
+(_4) --> (6)
+(_4) --> (7)
+
+@enduml

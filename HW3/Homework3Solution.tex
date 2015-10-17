@@ -3,7 +3,7 @@
 \usepackage{array}
 \usepackage{amsmath}
 \usepackage{color}
-%\usepackage{minted}
+\usepackage{graphicx}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[english]{babel}
@@ -81,6 +81,29 @@
         \subsection{2-L}
             $\forall song\: \exists album, singer\: (Sings(singer, osng, album)\land(singer!=Billy Holiday) \Leftrightarrow (\exists disk\: CopyOf(disk, album)\land Owns(Joe, disk))$
     \section{Problem 3}
+        Let us recall the property given in the exercice:
+        \begin{enumerate}
+            \item $0\le 4$
+            \item $5\le 9$
+            \item $\forall x,\: x\le x$
+            \item $\forall x,\: x\le x+0$
+            \item $\forall x,\: x+0\le x$
+            \item $\forall x,y,\: x+y\le y+x$
+            \item $\forall w,x,y,z,\: x\le y\land x\le z \Rightarrow w+x\le y+z$
+            \item $\forall x,y,z,\: x\le y\land y\le z\Rightarrow x\le z$
+        \end{enumerate}
         \subsection{3-A}
+            \begin{figure}[h]
+                \centering
+                \includegraphics[scale=0.5]{Backward.png}
+                \caption{Backward Chaining}
+                \label{BackwardChaining}
+            \end{figure}
         \subsection{3-B}
+            \begin{figure}[h]
+                \centering
+                \includegraphics[scale=0.5]{Forward.png}
+                \caption{Forward Chaining}
+                \label{ForwardChaining}
+            \end{figure}
 \end{document}
