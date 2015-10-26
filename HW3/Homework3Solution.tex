@@ -36,7 +36,7 @@
                         \item Unsatisfiable since (Smoke=True, Fire=True) is True
                         \item Valid since (Smoke=True, Fire=False) is False
                     \end{itemize}
-                \item Unsatisfiable : Since we have $Fire\land Fire$, we cannot find a value for $Fire$ such that the sentece is correct. So we cannot find any model in which this sentence is true, so it is unsatisfiable.
+                \item Unsatisfiable: Since we have $Fire\land Fire$, we cannot find a value for $Fire$ such that the sentece is correct. So we cannot find any model in which this sentence is true, so it is unsatisfiable.
                 \item Valid: To do that, let us manipulate the sentence:\\
                     \[\begin{array}{r c l}
                             ((Smoke\land Heat)\Rightarrow Fire) & \Leftrightarrow & \lnot (Smoke\land Heat)\lor Fire\\
@@ -48,11 +48,36 @@
             \end{enumerate}
 
         \subsection{1-C}
+            Let's add first the negation of our goal sentence in our set of ``known sentence'':\\
+            \begin{itemize}
+                \item S0: $A\lor B$
+                \item S1: $A \Leftrightarrow (B\lor E)$
+                \item S2: $E\Rightarrow D$
+                \item S3: $C\land F\Rightarrow \lnot B$
+                \item S4: $E\Rightarrow B$
+                \item S5: $B\Rightarrow F$
+                \item S6: $F\Rightarrow C$
+            \end{itemize}
+            Then, let us develop those sentences:
+            \begin{enumerate}
+                \item $A\lor B$
+                \item 
+                    \begin{enumerate}
+                        \item $\lnot A\lor B \lor E$
+                        \item $\lnot B\lor A$
+                        \item $\lnot E \lor A$
+                    \end{enumerate} 
+                \item $\lnot E \lor D$
+                \item $\lnot C \lor \lnot F \lor \lnot B$
+                \item $\lnot E \lor B$
+                \item $\lnot B\lor F$
+                \item $\lnot F\lor C$
+            \end{enumerate}
         \subsection{1-D}
             \begin{enumerate}
                 \item $\exists x\:\forall y\: Dog(x)\land Human(y)\land Loves(x, y)$
                 \item $\exists x\: \forall y\: Barber(x)\land ((Shaves(x, y) \lor Shaves(y, y)))$
-                \item $\forall x,\: y\: Smart(x)\land StudiesHard(x)\land (\lnot Smart(y)\lor \lnot StudiesHard(y))) \Rightarrow  gt(Grade(x), Grade(y))$
+                \item $\forall x,\: y\: Smart(x)\land StudiesHard(x)\land (\lnot Smart(y)\lor \lnot StudiesHard(y)) \Rightarrow  gt(Grade(x), Grade(y))$
             \end{enumerate}
 
     \section{Problem 2}
@@ -93,17 +118,15 @@
             \item $\forall x,y,z,\: x\le y\land y\le z\Rightarrow x\le z$
         \end{enumerate}
         \subsection{3-A}
-            \begin{figure}[h]
+            \begin{figure}[ht!]
                 \centering
                 \includegraphics[scale=0.5]{Backward.png}
                 \caption{Backward Chaining}
-                \label{BackwardChaining}
             \end{figure}
         \subsection{3-B}
-            \begin{figure}[h]
+            \begin{figure}[ht!]
                 \centering
                 \includegraphics[scale=0.5]{Forward.png}
                 \caption{Forward Chaining}
-                \label{ForwardChaining}
             \end{figure}
 \end{document}
