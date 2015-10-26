@@ -1,6 +1,7 @@
 \documentclass{article}
 \usepackage[usenames,dvipsnames]{xcolor}
 \usepackage{array}
+\usepackage{float}
 \usepackage{amsmath}
 \usepackage{color}
 \usepackage{graphicx}
@@ -73,6 +74,13 @@
                 \item $\lnot B\lor F$
                 \item $\lnot F\lor C$
             \end{enumerate}
+            One we have this, we can solve the problem according to the following diagram:\\
+            \begin{figure}[H]
+                \centering
+                \includegraphics[scale=0.5]{1C.png}
+                \caption{Solution}
+            \end{figure}
+            We can then assume that $\lnot A\land \lnot B$
         \subsection{1-D}
             \begin{enumerate}
                 \item $\exists x\:\forall y\: Dog(x)\land Human(y)\land Loves(x, y)$
@@ -118,13 +126,13 @@
             \item $\forall x,y,z,\: x\le y\land y\le z\Rightarrow x\le z$
         \end{enumerate}
         \subsection{3-A}
-            \begin{figure}[ht!]
+            \begin{figure}[H]
                 \centering
                 \includegraphics[scale=0.5]{Backward.png}
-                \caption{Backward Chaining}
+                \caption{Backward chaining}
             \end{figure}
         \subsection{3-B}
-            \begin{figure}[ht!]
+            \begin{figure}[H]
                 \centering
                 \includegraphics[scale=0.5]{Forward.png}
                 \caption{Forward Chaining}
