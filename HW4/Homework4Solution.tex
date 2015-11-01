@@ -34,8 +34,8 @@
                     \end{itemize}
                 \item \textbf{Push}
                     \begin{itemize}
-                        \item \textbf{Possibility Axiom}: $Box(box)\land Equals(Height(p), Low)\land At(Monkey,p_{monkey}, s)\land At(box, p_{box}, s)\land Equals(p_{monkey}, p_{box})\land Equals(Height(p_{monkey}), Low) \Rightarrow Poss(Push(box, p), s)$
-                        \item \textbf{Effect Axiom}: $Poss(Push(box, p), s)\Rightarrow At(Monkey, p, Result(Push(box, p), s) \land At(box, p, Result(Push(box, p), s)$
+                        \item \textbf{Possibility Axiom}: $Object(obj)\land Equals(Height(p), Low)\land At(Monkey,p_{monkey}, s)\land At(obj, p_{obj}, s)\land Equals(p_{monkey}, p_{obj})\land Equals(Height(p_{monkey}), Low) \Rightarrow Poss(Push(obj, p), s)$
+                        \item \textbf{Effect Axiom}: $Poss(Push(obj, p), s)\Rightarrow At(Monkey, p, Result(Push(obj, p), s)) \land At(obj, p, Result(Push(obj, p), s))$
                     \end{itemize}
                 \item \textbf{ClimbUp}
                     \begin{itemize}
@@ -63,5 +63,16 @@
         \subsection{c.}
             The general goal is:\\
             $At(Box, p_{init}, s_0)\land At(Box, p_{init}, s)\land Holding(Banana, s)$
+            %TODO: last part of the question
         \subsection{d.}
+            Since we want to prohip moving an object if it's too heavy, we'll just change the \textbf{Possibility Axiom} by adding $\lnot Heavy(object)$, leading to:
+            \begin{itemize}
+                \item \textbf{Push}
+                    \begin{itemize}
+                        \item \textbf{Possibility Axiom}: $Object(obj)\land \lnot Heavy(obj)\land Equals(Height(p), Low)\land At(Monkey,p_{monkey}, s)\land At(obj, p_{obj}, s)\land Equals(p_{monkey}, p_{obj})\land Equals(Height(p_{monkey}), Low) \Rightarrow Poss(Push(obj, p), s)$
+                        \item \textbf{Effect Axiom}: $Poss(Push(obj, p), s)\Rightarrow At(Monkey, p, Result(Push(obj, p), s)) \land At(obj, p, Result(Push(obj, p), s))$
+                    \end{itemize}
+            \end{itemize}
+
+
 \end{document}
