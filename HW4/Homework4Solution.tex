@@ -13,19 +13,53 @@
 \definecolor{bg}{rgb}{0.95,0.95,0.95}
 
 \begin{document}
-    \title{\textbf{''Introduction to Artificial Intelligence: Homework \#4''}}
-    \author{LAINE Bastien \#20156441}
-    \date{Nov. 6th 2015}
-    \maketitle
-    \tableofcontents
+\title{\textbf{''Introduction to Artificial Intelligence: Homework \#4''}}
+\author{LAINE Bastien \#20156441}
+\date{Nov. 6th 2015}
+\maketitle
+\tableofcontents
 
-    \newpage
+\newpage
 
     \section{Problem 1}
         \subsection{a.}
             The initial state description is:\\
             $At(Monkey,[A,Low],S_0)\land At(Banana,[B,High],S_0)\land At(Box,[C,Low],S_0)$
         \subsection{b.}
+            \begin{itemize}
+                \item \textbf{Go}
+                    \begin{itemize}
+                        \item \textbf{Possibility Axiom}: $At(Monkey, p_1, s)\land Equals(Height(p_1), Low)\land Equals(Height(p_2), Low)\Rightarrow Poss(Go(p_1, p_2), s)$
+                        \item \textbf{Effect Axiom}: $Poss(Go(p_1, p_2), s)\Rightarrow At(Monkey, p_2, Result(Go(p_1, p_2), s))$
+                    \end{itemize}
+                \item \textbf{Push}
+                    \begin{itemize}
+                        \item \textbf{Possibility Axiom}: $Box(box)\land Equals(Height(p), Low)\land At(Monkey,p_{monkey}, s)\land At(box, p_{box}, s)\land Equals(p_{monkey}, p_{box})\land Equals(Height(p_{monkey}), Low) \Rightarrow Poss(Push(box, p), s)$
+                        \item \textbf{Effect Axiom}: $Poss(Push(box, p), s)\Rightarrow At(Monkey, p, Result(Push(box, p), s) \land At(box, p, Result(Push(box, p), s)$
+                    \end{itemize}
+                \item \textbf{ClimbUp}
+                    \begin{itemize}
+                        \item \textbf{Possibility Axiom}: $Box(box)\land At(Monkey, p_{monkey}, s)\land At(Box, p_{box}, s)\land Equals(p_{monkey}, p_{box})\land Equals(Height(p_{monkey}), Low)\Rightarrow Poss(ClimbUp(box), s)$
+                        \item \textbf{Effect Axiom}: $Poss(ClimbUp(box), s)\Rightarrow$\\
+                            $At(Monkey, [Location(p_{box}), High], Result(ClimbUp(box), s))$
+                    \end{itemize}
+                \item \textbf{ClimbDown}
+                    \begin{itemize}
+                        \item \textbf{Possibility Axiom}: $Box(box)\land At(Monkey, p_{monkey}, s)\land At(Box, p_{box}, s)\land Equals(p_{monkey}, p_{box})\land Equals(Height(p_{monkey}), High)\Rightarrow Poss(ClimbDown(box), s)$
+                        \item \textbf{Effect Axiom}: $Poss(ClimbDown(box), s)\Rightarrow$\\
+                            $At(Monkey, [Location(p_{box}), Low], Result(ClimbDown(box), s))$
+                    \end{itemize}
+                \item \textbf{Grasp}
+                    \begin{itemize}
+                        \item \textbf{Possibility Axiom}: $Banana(banana)\land At(Monkey, p, s)\land At(banana, p, s)\Rightarrow Poss(Grasp(banana), s)$
+                        \item \textbf{Effect Axiom}: $Poss(Grasp(banana), s)\Rightarrow Holding(banana, Result(Grasp(banana), s))$
+                    \end{itemize}
+                \item \textbf{Ungrasp}
+                    \begin{itemize}
+                        \item \textbf{Possibility Axiom}: $Holding(banana, s)\Rightarrow Poss(Ungrasp(banana), s)$
+                        \item \textbf{Effect Axiom}: $Poss(Ungrasp(banana), s)\Rightarrow \lnot Holding(banana, Result(Ungrasp(banana), s))$
+                    \end{itemize}
+            \end{itemize}
         \subsection{c.}
         \subsection{d.}
 \end{document}
