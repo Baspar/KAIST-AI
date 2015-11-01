@@ -47,7 +47,7 @@
                     \begin{itemize}
                         \item \textbf{Possibility Axiom}: $Box(box)\land At(Monkey, p_{monkey}, s)\land At(Box, p_{box}, s)\land Equals(p_{monkey}, p_{box})\land Equals(Height(p_{monkey}), High)\Rightarrow Poss(ClimbDown(box), s)$
                         \item \textbf{Effect Axiom}: $Poss(ClimbDown(box), s)\Rightarrow$\\
-                            $At(Monkey, [Location(p_{box}), Low], Result(ClimbDown(box), s))$
+                            $At(Monkey, p_{box}, Result(ClimbDown(box), s))$
                     \end{itemize}
                 \item \textbf{Grasp}
                     \begin{itemize}
