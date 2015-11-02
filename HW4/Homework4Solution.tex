@@ -74,5 +74,57 @@
             \end{itemize}
     \section{Problem 2}
     \section{Problem 3}
+        \subsection{a}
+            For this part, we just have to copy/paste the entire code of the page.\\
+            Since the used version in the tutorial is older than mine, I just added ``:-dynamic(on/2)'' to enable the retract of on() clauses.\\
+            The final code is included in the file p3.a.pl\\
+            The different log are:\\
+            \begin{tabular}{|p{6cm}|p{6cm}|}
+                \hline
+                    \textbf{Commands} & \textbf{Log}\\
+                \hline
+
+                \hline
+                    put\_on() & ?- put\_on(a,table).
+                    \newline \textcolor{gray}{    true .}
+                    \newline ?- listing(on), listing(move).
+                    \newline \textcolor{gray}{:- dynamic on/2.}
+                    \newline \textcolor{gray}{    on(b, c).}
+                    \newline \textcolor{gray}{    on(c, table).}
+                    \newline \textcolor{gray}{    on(a, table).}
+                    \newline \textcolor{gray}{:- dynamic move/3.}
+                    \newline \textcolor{gray}{    move(a, b, table).}
+                    \newline \textcolor{gray}{    true.}
+                    \newline ?- put\_on(c,a).
+                    \newline \textcolor{gray}{    false.}\\
+                \hline
+                    r\_put\_on() & ?- r\_put\_on(c,a).
+                    \newline \textcolor{gray}{    true .}
+                    \newline ?- listing(on), listing(move).
+                    \newline \textcolor{gray}{:- dynamic on/2.}
+                    \newline \textcolor{gray}{    on(a, table).}
+                    \newline \textcolor{gray}{    on(b, table).}
+                    \newline \textcolor{gray}{    on(c, a).}
+                    \newline \textcolor{gray}{:- dynamic move/3.}
+                    \newline \textcolor{gray}{    move(a, b, table).}
+                    \newline \textcolor{gray}{    move(b, c, table).}
+                    \newline \textcolor{gray}{    move(c, table, a).}
+                    \newline \textcolor{gray}{    true.}\\
+                \hline
+                    do() & ?- do([on(a,table),on(b,a),on(c,b)]).
+                    \newline \textcolor{gray}{    true .}
+                    \newline ?- listing(on), listing(move).
+                    \newline \textcolor{gray}{:- dynamic on/2.}
+                    \newline \textcolor{gray}{    on(a, table).}
+                    \newline \textcolor{gray}{    on(b, a).}
+                    \newline \textcolor{gray}{    on(c, b).}
+                    \newline \textcolor{gray}{:- dynamic move/3.}
+                    \newline \textcolor{gray}{    move(a, b, table).}
+                    \newline \textcolor{gray}{    move(b, c, a).}
+                    \newline \textcolor{gray}{    move(c, table, b).}
+                    \newline \textcolor{gray}{    true.}\\
+                \hline
+            \end{tabular}
+
     \section{Problem 4}
 \end{document}
