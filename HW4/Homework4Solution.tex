@@ -83,8 +83,6 @@
                 \hline
                     \textbf{Commands} & \textbf{Log}\\
                 \hline
-
-                \hline
                     put\_on() & ?- put\_on(a,table).
                     \newline \textcolor{gray}{    true .}
                     \newline ?- listing(on), listing(move).
@@ -123,6 +121,22 @@
                     \newline \textcolor{gray}{    move(b, c, a).}
                     \newline \textcolor{gray}{    move(c, table, b).}
                     \newline \textcolor{gray}{    true.}\\
+                \hline
+            \end{tabular}
+        \subsection{b}
+            For this part, both codes can be found on files p3.b1.pl and p3.b2.pl.\\
+            The two last command are commented, they are the one to execute by hand on the command line interface.\\
+            \begin{tabular}{|p{3cm}|p{6cm}|p{3cm}|}
+                \hline
+                \textbf{Initialization} & \textbf{Goal} & \textbf{Log}\\
+                \hline
+                    on(a,b).\newline on(b,c).\newline on(c,d).\newline on(d,e).\newline on(e,table). &
+                    [on(a, table), on(b, table), on(c, table), on(d, table), on(e, table)].&
+                    :- dynamic on/2.\newline on(e, table).\newline on(a, table).\newline on(b, table).\newline on(c, table).\newline on(d, table).\newline :- dynamic move/3.\newline move(a, b, table).\newline move(b, c, table).\newline move(c, d, table).\newline move(d, e, table).\newline true.\\
+                \hline%TODO: Change 2nd exeample
+                    on(a,b).\newline on(b,c).\newline on(c,d).\newline on(d,e).\newline on(e,table). &
+                    [on(a, table), on(b, table), on(c, table), on(d, table), on(e, table)].&
+                    :- dynamic on/2.\newline on(e, table).\newline on(a, table).\newline on(b, table).\newline on(c, table).\newline on(d, table).\newline :- dynamic move/3.\newline move(a, b, table).\newline move(b, c, table).\newline move(c, d, table).\newline move(d, e, table).\newline true.\\
                 \hline
             \end{tabular}
 
