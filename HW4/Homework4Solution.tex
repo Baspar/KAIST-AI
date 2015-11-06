@@ -73,6 +73,10 @@
                     \end{itemize}
             \end{itemize}
     \section{Problem 2}
+        \subsection{a}
+            In the case of planning, bidirectionnal search would be a good idea. Since the goal doesn't have a more ``abstract'' definition, but a precise one, we can easily compute the backward and foward states.
+        \subsection{b}
+            In that case, it is not efficient. SInce we only focus on the partial-ordering, we cannot be sure to find a meet point.
     \section{Problem 3}
         \subsection{a}
             For this part, we just have to copy/paste the entire code of the page.\\
@@ -133,12 +137,31 @@
                     on(a,b).\newline on(b,c).\newline on(c,d).\newline on(d,e).\newline on(e,table). &
                     [on(a, table), on(b, table), on(c, table), on(d, table), on(e, table)].&
                     :- dynamic on/2.\newline on(e, table).\newline on(a, table).\newline on(b, table).\newline on(c, table).\newline on(d, table).\newline :- dynamic move/3.\newline move(a, b, table).\newline move(b, c, table).\newline move(c, d, table).\newline move(d, e, table).\newline true.\\
-                \hline%TODO: Change 2nd exeample
-                    on(a,b).\newline on(b,c).\newline on(c,d).\newline on(d,e).\newline on(e,table). &
-                    [on(a, table), on(b, table), on(c, table), on(d, table), on(e, table)].&
-                    :- dynamic on/2.\newline on(e, table).\newline on(a, table).\newline on(b, table).\newline on(c, table).\newline on(d, table).\newline :- dynamic move/3.\newline move(a, b, table).\newline move(b, c, table).\newline move(c, d, table).\newline move(d, e, table).\newline true.\\
+                \hline
+                    on(a,table). \newline on(b,table). \newline on(c,table).  &
+                    [on(a,table), on(b,a), on(c,b)] &
+                    :- dynamic on/2.\newline on(a, table).\newline on(b, a).\newline on(c, b).\newline :- dynamic move/3.\newline move(b, table, a). \newline move(c, table, b). \newline true\\
                 \hline
             \end{tabular}
-
     \section{Problem 4}
+        \subsection{a}
+            The things that can matter to do a ``snapshot'' of the world at a given time, are:
+            \begin{itemize}
+                \item Number of cannibals on bank \#1
+                \item Number of cannibals on bank \#2
+                \item Number of missionaries on bank \#1
+                \item Number of missionaries on bank \#2
+                \item Bank side where the boat is docked
+            \end{itemize}
+            One idea could be to represent it with a list $[M1, C1, B, M2, C2]$, where:
+            \begin{description}
+                \item[M1] stands for the number of missionaries on the bank 1 $\in[0, 3]$
+                \item[C1] stands for the number of cannibals on the bank 1 $\in[0, 3]$
+                \item[B] stands for the bank side  where the boat is docked $\in\{left, right\}$
+                \item[M2] stands for the number of missionaries on the bank 2 $\in[0, 3]$
+                \item[C2] stands for the number of cannibals on the bank 2 $\in[0, 3]$
+            \end{description}
+        \subsection{Code}
+            The code is available is the file cannibal.pl.\\
+            Just load it, and execute find.
 \end{document}

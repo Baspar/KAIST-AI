@@ -1,7 +1,7 @@
 :-dynamic(on/2).
 /*Initialization*/
-on(a,b).
-on(b,c).
+on(a,table).
+on(b,table).
 on(c,table).
 
 
@@ -44,4 +44,4 @@ achieve(on(A,B)) :-
 
 
 /*Print results according to the goal*/
-do([on(a,table),on(b,a),on(c,b)]), listing(on), listing(move).
+exec :- do([on(a,table),on(b,a),on(c,b)]), listing(on), listing(move).
