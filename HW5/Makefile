@@ -16,4 +16,4 @@ pseudo-clean:
 	rm -rf "Homework5Solution.aux" "Homework5Solution.log" "Homework5Solution.toc" "_minted-Homework5Solution"
 
 pack:
-	zip -r 20156441_bastien.zip "20156441_bastien.pdf" problem\ 4/*
+	zip -r 20156441_bastien.zip "20156441_bastien.pdf" problem*
