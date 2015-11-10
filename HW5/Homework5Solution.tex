@@ -22,6 +22,64 @@
 \newpage
     \section{Problem 1}
         \subsection{A}
+            \subsubsection{$p(a,b)\ne p(a).p(b)$?}
+                Using the formula $p(a, b)=\sum_c p(a, b, c)$, we can compute $p(a, b)$
+                \[
+                    \begin{tabular}{|c|c|c|}
+                        \hline
+                        $a$&$b$&$p(a,b)$\\
+                        \hline
+                        0&0&0.336\\
+                        \hline
+                        0&1&0.264\\
+                        \hline
+                        1&0&0.256\\
+                        \hline
+                        1&1&0.144\\
+                        \hline
+                    \end{tabular}
+                \]
+                According to the same formula, we can draw that $p(a)=\sum_b p(a,b)$ and that $p(b)=\sum_a p(a,b)$
+
+                \[
+                    \begin{tabular}{|c|c|}
+                        \hline
+                        a&p(a)\\
+                        \hline
+                        0&0.600\\
+                        \hline
+                        1&0.400\\
+                        \hline
+                    \end{tabular}
+                \]
+                \[
+                    \begin{tabular}{|c|c|}
+                        \hline
+                        b&p(b)\\
+                        \hline
+                        0&0.592\\
+                        \hline
+                        1&0.408\\
+                        \hline
+                    \end{tabular}
+                \]
+                \[
+                    \begin{tabular}{|c|c|c|}
+                        \hline
+                        $a$&$b$&$p(a)p(b)$\\
+                        \hline
+                        0&0&0.355\\
+                        \hline
+                        0&1&0.244\\
+                        \hline
+                        1&0&0.236\\
+                        \hline
+                        1&1&0.163\\
+                        \hline
+                    \end{tabular}
+                \]
+                Given that, we can clearly saw that $p(a, b)\ne p(a).p(b)$
+,
         \subsection{B}
     \section{Problem 2}
         \subsection{A}
