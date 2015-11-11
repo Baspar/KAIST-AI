@@ -53,69 +53,85 @@ recc(){
     let classId+=1
     total=$(echo "$list" | wc -l)
 
-    nbOriginalZero=$(echo "$list"| sed "s/.*://g" | grep 0 | wc -l)
-    nbOriginalOne=$(echo "$list"| sed "s/.*://g" | grep 1 | wc -l)
-    originalEntropy=$(computeEntropy $nbOriginalZero $nbOriginalOne)
-
     best=0
     bestEntropy=0
 
     local listZero=""
     local listOne=""
+
+    #Init
     for i in $nb
     do
-        nbZeroInZero=0
-        nbOneInZero=0
-        nbOneInOne=0
-        nbZeroInOne=0
+        nbZeroInZero[$i]=0
+        nbOneInZero[$i]=0
+        nbOneInOne[$i]=0
+        nbZeroInOne[$i]=0
 
-        listZeroTmp=""
-        listOneTmp=""
-        results=""
-        for line in $(echo "$list" | tr '\n' ' ')
+        listZeroTmp[$i]=""
+        listOneTmp[$i]=""
+        results[$i]=""
+    done
+
+    #Compute original entropy (Of the parent)
+    nbOriginalZero=$(echo "$list"| sed "s/.*://g" | grep 0 | wc -l)
+    nbOriginalOne=$(echo "$list"| sed "s/.*://g" | grep 1 | wc -l)
+    originalEntropy=$(computeEntropy $nbOriginalZero $nbOriginalOne)
+
+
+    #Read input list to fill information about 0 and 1
+    for line in $(echo "$list" | tr '\n' ' ')
+    do
+        result=$(echo $line | sed "s/.*://g")
+        data=$(echo $line | sed "s/:.*//g")
+        for i in $nb
         do
-            result=$(echo $line | sed "s/.*://g")
-            data=$(echo $line | sed "s/:.*//g")
             criteria=$(echo $data | cut -d ',' -f $i)
 
-            results=$(echo -e "$results\n$result")
+            results[$i]=$(echo -e "${results[$i]}\n$result")
             if [ $criteria -eq 0 ]
             then
-                listZeroTmp=$(echo -e "$listZeroTmp\n$line")
+                listZeroTmp[$i]=$(echo -e "${listZeroTmp[$i]}\n$line")
                 if [ $result -eq 0 ]
                 then
-                    let nbZeroInZero+=1
+                    let nbZeroInZero[$i]+=1
                 else
-                    let nbOneInZero+=1
+                    let nbOneInZero[$i]+=1
                 fi
             else
-                listOneTmp=$(echo -e "$listOneTmp\n$line")
+                listOneTmp[$i]=$(echo -e "${listOneTmp[$i]}\n$line")
                 if [ $result -eq 0 ]
                 then
-                    let nbZeroInOne+=1
+                    let nbZeroInOne[$i]+=1
                 else
-                    let nbOneInOne+=1
+                    let nbOneInOne[$i]+=1
                 fi
             fi
         done
-        averageEntropy=$(computeAverageEntropy $nbZeroInZero $nbOneInZero $nbZeroInOne $nbOneInOne)
+    done
+
+    #Take the best children entropy
+    for i in $nb
+    do
+        averageEntropy=$(computeAverageEntropy ${nbZeroInZero[$i]} ${nbOneInZero[$i]} ${nbZeroInOne[$i]} ${nbOneInOne[$i]})
         informationGain=$(echo "$originalEntropy-$averageEntropy" | bc -l)
         if [ $(echo "$informationGain<$bestEntropy" | bc -l) -eq 0 ]
         then
             bestEntropy=$informationGain
             best=$i
-            listZero="$listZeroTmp"
-            listOne="$listOneTmp"
+            listZero="${listZeroTmp[$i]}"
+            listOne="${listOneTmp[$i]}"
         fi
     done
 
-    if [ $(echo "$results" | sort | uniq | wc -l) -eq 3 ]
+    #Print this step information for the graph
+    echo -e "class \"Split on I_$best\" as $myClassId{\n$list\n}\n" >> graph.uml
+    if [ $parentId -ne 0 ];then echo "$parentId --> $myClassId : $parentSplit" >> graph.uml; fi
+
+    #See if we need to go reccursively, and go reccusrive
+    if [ $(echo "${results[$best]}" | sort | uniq | wc -l) -eq 3 ]
     then
         local newNb=$(echo $nb | sed "s/$best//g; s/ +/ /g; s/^ //g; s/ $//g")
         local newLevel=$((level+1))
-
-        echo -e "class \"Split on I_$best\" as $myClassId{\n$list\n}\n" >> graph.uml
-        if [ $parentId -ne 0 ];then echo "$parentId -- $myClassId : $parentSplit" >> graph.uml; fi
 
 
         echo "Split I_$best"
@@ -128,9 +144,7 @@ recc(){
         echo -n "1:  "
         if [ "$listOne" ]; then recc "$myClassId" "1" "$newLevel" "$newNb" "$listOne"; else echo ""; fi
     else
-        echo ""
-        echo -e "class \"No Split needed\" as $myClassId{\n$list\n}\n" >> graph.uml
-        if [ $parentId -ne 0 ];then echo "$parentId -- $myClassId : $parentSplit" >> graph.uml; fi
+        echo " Leaf"
     fi
 }
 
