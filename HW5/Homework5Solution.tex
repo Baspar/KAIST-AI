@@ -79,8 +79,22 @@
                     \end{tabular}
                 \]
                 Given that, we can clearly saw that $p(a, b)\ne p(a).p(b)$
-,
+            \subsubsection{$p(a,b|c)=p(a|c)p(b|c)$?}
         \subsection{B}
+            \subsubsection{p(a)}
+            \subsubsection{p(b|c)}
+            \subsubsection{p(c|a)}
+            \subsubsection{p(a,b,c)=p(a)p(c|a)p(b|c)?}
+                Using Bayes formula, we can easily deduct that:
+                \[
+                    \begin{array}{rcl}
+                        p(a)p(c|a)p(b|c) &=& p(a\cap c)p(b|c)\\
+                        &=& p(a\cap c\cap b)\\
+                        p(a)p(c|a)p(b|c) &=& p(a, b, c)\\
+                    \end{array}
+                \]
+                Finaly, we can say that $p(a,b,c)=p(a)p(c|a)p(b|c)$
+            \subsubsection{Directed graph}
     \section{Problem 2}
         \subsection{A}
             We begin with the whole set of example.\\
@@ -100,7 +114,6 @@
                 \centering
                 \includegraphics[scale=0.5]{problem2/graph.png}
                 \caption{Final decision tree}
-                \label{Final decision tree}
             \end{figure}
 
 
