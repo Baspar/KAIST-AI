@@ -113,10 +113,10 @@ recc(){
     for i in $nb
     do
         averageEntropy=$(computeAverageEntropy ${nbZeroInZero[$i]} ${nbOneInZero[$i]} ${nbZeroInOne[$i]} ${nbOneInOne[$i]})
-        informationGain=$(echo "$originalEntropy-$averageEntropy" | bc -l)
-        if [ $(echo "$informationGain<$bestEntropy" | bc -l) -eq 0 ]
+        informationGain[$i]=$(echo "$originalEntropy-$averageEntropy" | bc -l)
+        if [ $(echo "${informationGain[$i]}<$bestEntropy" | bc -l) -eq 0 ]
         then
-            bestEntropy=$informationGain
+            bestEntropy=${informationGain[$i]}
             best=$i
             listZero="${listZeroTmp[$i]}"
             listOne="${listOneTmp[$i]}"
@@ -134,7 +134,7 @@ recc(){
         local newLevel=$((level+1))
 
 
-        echo "Split I_$best"
+        echo "Split I_$best [${informationGain[$best]}]"
 
         indent $level
         echo -n "0:  "
