@@ -58,7 +58,7 @@ def evaluate(X, Y):
         y_predicted = propagate(x)
 
         error.append(np.mean(np.abs(y_predicted - y)))
-    
+
     return np.mean(error)
 
 # SAMPLING CONFIGURATION
@@ -91,9 +91,9 @@ for iteration in xrange(50000):
 
     if (iteration % 1000) == 0:
         print 'iteration: {0:5d} / error on validation data: {1:.15f} / y_true: {2} / y_predicted: {3}'.format(
-            iteration, 
+            iteration,
             evaluate(X_valid, Y_valid),
-            np.argmax(y_true), 
+            np.argmax(y_true),
             np.argmax(y_predicted)
         )
 
