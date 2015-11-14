@@ -124,12 +124,11 @@ recc(){
     done
 
     #Print this step information for the graph
-    echo -e "class \"Split on I_$best\" as $myClassId{\n$list\n}\n" >> graph.uml
-    if [ $parentId -ne 0 ];then echo "$parentId --> $myClassId : $parentSplit" >> graph.uml; fi
 
-    #See if we need to go reccursively, and go reccusrive
+    #See if we need to go reccursively, and go reccursive + print Class
     if [ $(echo "${results[$best]}" | sort | uniq | wc -l) -eq 3 ]
     then
+        echo -e "class \"Split on I_$best\" as $myClassId{\n$list\n}\n" >> graph.uml
         local newNb=$(echo $nb | sed "s/$best//g; s/ +/ /g; s/^ //g; s/ $//g")
         local newLevel=$((level+1))
 
@@ -144,8 +143,12 @@ recc(){
         echo -n "1:  "
         if [ "$listOne" ]; then recc "$myClassId" "1" "$newLevel" "$newNb" "$listOne"; else echo ""; fi
     else
+        echo -e "class \"No need to split\" as $myClassId{\n$list\n}\n" >> graph.uml
         echo " Leaf"
     fi
+
+    #Print upper link
+    if [ $parentId -ne 0 ];then echo "$parentId --> $myClassId : $parentSplit" >> graph.uml; fi
 }
 
 list=$(cat d | sed "s/ //g")
