@@ -12,7 +12,7 @@ size_of_layers = [
 ]
 
 layers =[
-    np.ones((1, size_of_layers[0])), # the input layer 
+    np.ones((1, size_of_layers[0])), # the input layer
     np.ones((1, size_of_layers[1])), # the hidden layer
     np.ones((1, size_of_layers[2])), # the output layer
 ]
@@ -29,7 +29,7 @@ def sigmoid(x):
     # a sigmoid of x
 
     # [4.A] FILL YOUR CODE HERE
-    pass
+    return 1/(1+np.exp(-x))
 
 def propagate(x):
     # propagate an input x to the output layer
