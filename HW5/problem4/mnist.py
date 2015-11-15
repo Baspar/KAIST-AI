@@ -63,7 +63,19 @@ def backpropagate(y_true, learning_rate):
     # backpropagate an error from the output layer and update weights
 
     # [4.C] FILL YOUR CODE HERE
-    pass
+
+    #Compute deltas for output layer
+    outerr = layers[2]*(1-layers[2])*(y_true-layers[2]) #(1, 10)
+
+    #Compute deltas for hidden layers
+    hiddenerr = layers[1]*(1-layers[1])*(outerr.dot(weights[1].T)) #(1, 50)
+
+    #Change hidden-output weigths
+    weights[1] = weights[1] + learning_rate*layers[1].T.dot(outerr) #(50, 10)
+
+    #Change input-hidden weigths
+    weights[0] = weights[0] + learning_rate*layers[0].T.dot(hiddenerr) #(784, 50)
+
 
 
 # EVALUATION - DO NOT MODIFY THIS FUNCTION!
