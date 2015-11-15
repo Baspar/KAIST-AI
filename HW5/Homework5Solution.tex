@@ -171,44 +171,46 @@ def backpropagate(y_true, learning_rate):
     weights[0] = weights[0] + learning_rate*layers[0].T.dot(hiddenerr) #(784, 50)
             \end{minted}
         \subsection{D}
-            \begin{tabular}{|c|c|}
-                \hline
-                Interation & Error \\
-                \hline
-                0 & 0.537155024662484 \\
-                \hline
-                1000 & 0.149062349319850 \\
-                \hline
-                2000 & 0.124576012748911 \\
-                \hline
-                3000 & 0.111371770213344 \\
-                \hline
-                $\cdots$ & $\cdots$\\
-                \hline
-                40000 & 0.042501735109164 \\
-                \hline
-                41000 & 0.041759621834425 \\
-                \hline
-                42000 & 0.040796208555681 \\
-                \hline
-                43000 & 0.042767219131763 \\
-                \hline
-                44000 & 0.041207886314534 \\
-                \hline
-                45000 & 0.040088629855188 \\
-                \hline
-                46000 & 0.039915601152924 \\
-                \hline
-                47000 & 0.040204314440399 \\
-                \hline
-                48000 & 0.039018303138219 \\
-                \hline
-                49000 & 0.038433948782109 \\
-                \hline
-                Validation data & 0.038829476442797\\
-                \hline
-                Test data & 0.039398346519943\\
-                \hline
-            \end{tabular}
+            \[
+                \begin{tabular}{|c|c|}
+                    \hline
+                    \text{Interation} & \text{Error} \\
+                    \hline
+                    0 & 0.537155024662484 \\
+                    \hline
+                    1000 & 0.149062349319850 \\
+                    \hline
+                    2000 & 0.124576012748911 \\
+                    \hline
+                    3000 & 0.111371770213344 \\
+                    \hline
+                    $\cdots$ & $\cdots$\\
+                    \hline
+                    40000 & 0.042501735109164 \\
+                    \hline
+                    41000 & 0.041759621834425 \\
+                    \hline
+                    42000 & 0.040796208555681 \\
+                    \hline
+                    43000 & 0.042767219131763 \\
+                    \hline
+                    44000 & 0.041207886314534 \\
+                    \hline
+                    45000 & 0.040088629855188 \\
+                    \hline
+                    46000 & 0.039915601152924 \\
+                    \hline
+                    47000 & 0.040204314440399 \\
+                    \hline
+                    48000 & 0.039018303138219 \\
+                    \hline
+                    49000 & 0.038433948782109 \\
+                    \hline
+                    \text{Validation data} & 0.038829476442797\\
+                    \hline
+                    \text{Test data} & 0.039398346519943\\
+                    \hline
+                \end{tabular}
+            \]
         \subsection{E}
 \end{document}
