@@ -1,6 +1,7 @@
 \documentclass{article}
 \usepackage[usenames,dvipsnames]{xcolor}
 \usepackage{array}
+\usepackage{minted}
 \usepackage{float}
 \usepackage{amsmath}
 \usepackage{color}
@@ -121,24 +122,92 @@
         \subsection{A}
     \section{Problem 4}
         \subsection{A}
+            Here is a copy of the sigmoid function you can find on ``problem4/mnist.py''\\
+            I use the Numpy's exponential, because it allows me to calculate the exp of every term of an array.
+            \begin{minted}[linenos]{python}
+def sigmoid(x):
+    # a sigmoid of x
+
+    # [4.A] FILL YOUR CODE HERE
+    return 1/(1+np.exp(-x))
+            \end{minted}
         \subsection{B}
+            Here is a copy of the propagate function you can find on ``problem4/mnist.py''\\
+            \begin{minted}[linenos]{python}
+def propagate(x):
+    # propagate an input x to the output layer
+
+    # [4.B] FILL YOUR CODE HERE
+
+    #Copy data to the input layer
+    np.copyto(layers[0], x)
+
+    #Compute y for the hidden layer
+    layers[1]=sigmoid(np.dot(layers[0], weights[0]))
+
+    #Compute y for the output layer
+    layers[2]=sigmoid(np.dot(layers[1], weights[1]))
+
+    return layers[2]
+            \end{minted}
         \subsection{C}
+            Here is a copy of the backpropagate function you can find on ``problem4/mnist.py''\\
+            \begin{minted}[linenos]{python}
+def backpropagate(y_true, learning_rate):
+    # backpropagate an error from the output layer and update weights
+
+    # [4.C] FILL YOUR CODE HERE
+
+    #Compute deltas for output layer
+    outerr = layers[2]*(1-layers[2])*(y_true-layers[2]) #(1, 10)
+
+    #Compute deltas for hidden layers
+    hiddenerr = layers[1]*(1-layers[1])*(outerr.dot(weights[1].T)) #(1, 50)
+
+    #Change hidden-output weigths
+    weights[1] = weights[1] + learning_rate*layers[1].T.dot(outerr) #(50, 10)
+
+    #Change input-hidden weigths
+    weights[0] = weights[0] + learning_rate*layers[0].T.dot(hiddenerr) #(784, 50)
+            \end{minted}
         \subsection{D}
             \begin{tabular}{|c|c|}
                 \hline
                 Interation & Error \\
                 \hline
-                40000 & \\
+                0 & 0.537155024662484 \\
                 \hline
-                49000 & \\
+                1000 & 0.149062349319850 \\
                 \hline
-                $\cdots$ & \\
+                2000 & 0.124576012748911 \\
                 \hline
-                49000 & \\
+                3000 & 0.111371770213344 \\
                 \hline
-                Validation data & \\
+                $\cdots$ & $\cdots$\\
                 \hline
-                Test data & \\
+                40000 & 0.042501735109164 \\
+                \hline
+                41000 & 0.041759621834425 \\
+                \hline
+                42000 & 0.040796208555681 \\
+                \hline
+                43000 & 0.042767219131763 \\
+                \hline
+                44000 & 0.041207886314534 \\
+                \hline
+                45000 & 0.040088629855188 \\
+                \hline
+                46000 & 0.039915601152924 \\
+                \hline
+                47000 & 0.040204314440399 \\
+                \hline
+                48000 & 0.039018303138219 \\
+                \hline
+                49000 & 0.038433948782109 \\
+                \hline
+                Validation data & 0.038829476442797\\
+                \hline
+                Test data & 0.039398346519943\\
                 \hline
             \end{tabular}
         \subsection{E}
