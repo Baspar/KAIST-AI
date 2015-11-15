@@ -40,22 +40,10 @@ def propagate(x):
     np.copyto(layers[0], x)
 
     #Compute y for the hidden layer
-    layers[1]=sigmoid(
-        np.dot(
-            layers[0]
-            ,
-            weights[0]
-        )
-    )
+    layers[1]=sigmoid(np.dot(layers[0], weights[0]))
 
     #Compute y for the output layer
-    layers[2]=sigmoid(
-        np.dot(
-            layers[1]
-            ,
-            weights[1]
-        )
-    )
+    layers[2]=sigmoid(np.dot(layers[1], weights[1]))
 
     return layers[2]
 
