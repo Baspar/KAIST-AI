@@ -35,7 +35,14 @@ def propagate(x):
     # propagate an input x to the output layer
 
     # [4.B] FILL YOUR CODE HERE
-    pass
+
+    np.copyto(layers[0], x)
+
+    for i in range(0, size_of_layers[1]):
+        layers[1][0][i]=sigmoid(np.dot(layers[0][0], weights[0])[i])
+
+    for i in range(0, size_of_layers[2]):
+        layers[2][0][i]=sigmoid(np.dot(layers[1][0], weights[1])[i])
 
     return layers[2]
 
