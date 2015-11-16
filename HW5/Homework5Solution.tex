@@ -120,6 +120,35 @@
 
     \section{Problem 3}
         \subsection{A}
+            Lets map the four points in the $(x_1, x_1x_2)$ space
+            \begin{figure}[H]
+                \centering
+                \includegraphics[scale=0.5]{problem3/x1x2-x1.png}
+                \caption{x1-x1x2 space}
+            \end{figure}
+            We can saw the \textbf{maximal margin separator} (in red), whose margin is \textbf{1}.\\
+
+            Now that we have our separator in thsi space, we will found it back in the Euclidian space.\\
+            To do so, we know that:\\
+            \[
+                x_1*x_2=0 \Leftrightarrow\left\{
+                    \begin{array}{r c l}
+                        x_1 &=& 0\\
+                        & OR & \\
+                        x_2 &=& 0
+                    \end{array}
+                \right.
+            \]
+            Since our separator correspond to $x_1*x_2=0$, we can transform it into 2 separators in the Euclidian space, where $x_1=0$ OR $x_2=0$.\\
+            On a drawing:
+            \begin{figure}[H]
+                \centering
+                \includegraphics[scale=0.5]{problem3/x1-x2.png}
+                \caption{x1-x2 space}
+            \end{figure}
+
+
+
     \section{Problem 4}
         \subsection{A}
             Here is a copy of the sigmoid function you can find on ``problem4/mnist.py''\\
