@@ -242,4 +242,18 @@ def backpropagate(y_true, learning_rate):
                 \end{tabular}
             \]
         \subsection{E}
+            When choosing $\eta$ we have to keep some things in mind:
+            \begin{itemize}
+                \item We want to maximize $\eta$, in order to make our program \textbf{converge faster}
+                \item We also want to keep $\eta$ small enough, else we could be stuck in a \textbf{local minimum}
+            \end{itemize}
+            Given so, we try to increment $\eta$, and we can see that from $\eta=0.7$, we saw that the validiation data error increases. We will let $\eta$ be equals to 0.7\\
+
+            Then we have to choose a size for our hidden layer:
+            \begin{itemize}
+                \item If the size is to small, then we will have an underfitting, that is to say our network won't be able to ``learn'' anything.
+                \item If the size is to big, then we will have an overfitting, that is to say our network won't be able to ``conclude'' anything, and will end up enumerating every cases.
+            \end{itemize}
+            By having a size of 200 hidden nodes, it gave us a great compromise, and improves the initial error
+
 \end{document}
