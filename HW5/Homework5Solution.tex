@@ -23,7 +23,7 @@
 \newpage
     \section{Problem 1}
         \subsection{A}
-            \subsubsection{$p(a,b)\ne p(a).p(b)$?}
+            \subsubsection{p(a,b)$\ne$ p(a).p(b)?}
                 Using the formula $p(a, b)=\sum_c p(a, b, c)$, we can compute $p(a, b)$
                 \[
                     \begin{tabular}{|c|c|c|}
@@ -41,7 +41,6 @@
                     \end{tabular}
                 \]
                 According to the same formula, we can draw that $p(a)=\sum_b p(a,b)$ and that $p(b)=\sum_a p(a,b)$
-
                 \[
                     \begin{tabular}{|c|c|}
                         \hline
@@ -52,8 +51,7 @@
                         1&0.400\\
                         \hline
                     \end{tabular}
-                \]
-                \[
+                    \text{ }
                     \begin{tabular}{|c|c|}
                         \hline
                         b&p(b)\\
@@ -63,8 +61,7 @@
                         1&0.408\\
                         \hline
                     \end{tabular}
-                \]
-                \[
+                    \text{ }
                     \begin{tabular}{|c|c|c|}
                         \hline
                         $a$&$b$&$p(a)p(b)$\\
@@ -79,23 +76,180 @@
                         \hline
                     \end{tabular}
                 \]
-                Given that, we can clearly saw that $p(a, b)\ne p(a).p(b)$
-            \subsubsection{$p(a,b|c)=p(a|c)p(b|c)$?}
-        \subsection{B}
-            \subsubsection{p(a)}
-            \subsubsection{p(b|c)}
-            \subsubsection{p(c|a)}
-            \subsubsection{p(a,b,c)=p(a)p(c|a)p(b|c)?}
-                Using Bayes formula, we can easily deduct that:
+                Given that, we can clearly saw that:
+                \[
+                    p(a, b)\ne p(a).p(b)
+                \]
+            \subsubsection{p(a,b|c)=p(a|c)p(b|c)?}
+                Since we want to prove that $p(a,b|c)=p(a|c)p(b|c)$, lets us change a little bit the equation:
                 \[
                     \begin{array}{rcl}
-                        p(a)p(c|a)p(b|c) &=& p(a\cap c)p(b|c)\\
-                        &=& p(a\cap c\cap b)\\
-                        p(a)p(c|a)p(b|c) &=& p(a, b, c)\\
+                        p(a,b|c) &=& p(a|c)p(b|c)\\
+                        &\Updownarrow&\\
+                        \frac{p(a,b,c)}{p(c)} &=& \frac{p(a,c)p(b,c)}{p(c)^2}\\
+                        &\Updownarrow&\\
+                        p(a,b,c) &=& \frac{p(a,c)p(b,c)}{p(c)}
                     \end{array}
                 \]
-                Finaly, we can say that $p(a,b,c)=p(a)p(c|a)p(b|c)$
+                We already have the joint table of $p(a)$ and $p(b)$. Let us write down the remaining missing tables:
+                \[
+                    \begin{array}{|c|c|c|}
+                        \hline
+                        a&c&p(a,c)\\
+                        \hline
+                        0&0&0.24\\
+                        \hline
+                        0&1&0.36\\
+                        \hline
+                        1&0&0.24\\
+                        \hline
+                        1&1&0.16\\
+                        \hline
+                    \end{array}
+                    \text{ }
+                    \begin{array}{|c|c|c|}
+                        \hline
+                        b&c&p(b, c)\\
+                        \hline
+                        0&0&0.384\\
+                        \hline
+                        0&1&0.208\\
+                        \hline
+                        1&0&0.096\\
+                        \hline
+                        1&1&0.312\\
+                        \hline
+                    \end{array}
+                    \text{ }
+                    \begin{array}{|c|c|}
+                        \hline
+                        c&p(c)\\
+                        \hline
+                        0&0.48\\
+                        \hline
+                        1&0.52\\
+                        \hline
+                    \end{array}
+                \]
+                We can now compute and verify our formula
+                \[
+                    \begin{array}{|c|c|c|c|c|}
+                        \hline
+                        a&b&c&\frac{p(a, c)p(b, c)}{p(c)}&p(a, b, c)\\
+                        \hline
+                        0 & 0 & 0 & 0.192 & 0.192 \\
+                        \hline
+                        0 & 0 & 1 & 0.144 & 0.144 \\
+                        \hline
+                        0 & 1 & 0 & 0.048 & 0.048 \\
+                        \hline
+                        0 & 1 & 1 & 0.216 & 0.216 \\
+                        \hline
+                        1 & 0 & 0 & 0.192 & 0.192 \\
+                        \hline
+                        1 & 0 & 1 & 0.064 & 0.064 \\
+                        \hline
+                        1 & 1 & 0 & 0.048 & 0.048 \\
+                        \hline
+                        1 & 1 & 1 & 0.096 & 0.096 \\
+                        \hline
+                    \end{array}
+                \]
+                We can conclude that it is true that:
+                \[
+                    p(a,b|c)=p(a|c)p(b|c)
+                \]
+        \subsection{B}
+            \subsubsection{p(a)}
+                We can compute $p(a)$ according to the formula: $p(a)=\sum_b\sum_cp(a, b, c)$
+                \[
+                    \begin{tabular}{|c|c|}
+                        \hline
+                        a&p(a)\\
+                        \hline
+                        0&0.600\\
+                        \hline
+                        1&0.400\\
+                        \hline
+                    \end{tabular}
+                \]
+            \subsubsection{p(b|c)}
+                We can compute $p(b|c)$ according to the formula: $p(b|c)=\frac{p(b, c)}{p(c)}=\frac{1}{p(c)}\sum_ap(a, b, c)$
+                \[
+                    \begin{array}{|c|c|}
+                        \hline
+                        c&p(c)\\
+                        \hline
+                        0&0.48\\
+                        \hline
+                        1&0.52\\
+                        \hline
+                    \end{array}
+                    \text{ }
+                    \begin{tabular}{|c|c|c|}
+                        \hline
+                        b & c & p(b|c)\\
+                        \hline
+                        0 & 0 & 0.8 \\
+                        \hline
+                        0 & 1 & 0.4 \\
+                        \hline
+                        1 & 0 & 0.2 \\
+                        \hline
+                        1 & 1 & 0.6 \\
+                        \hline
+                    \end{tabular}
+                \]
+            \subsubsection{p(c|a)}
+                We can compute $p(c|a)$ according to the formula: $p(c|a)=\frac{p(a, c)}{p(a)}=\frac{1}{p(a)}\sum_bp(a, b, c)$
+                \[
+                    \begin{tabular}{|c|c|c|}
+                        \hline
+                        a & c & p(c|a)\\
+                        \hline
+                        0 & 0 & 0.4 \\
+                        \hline
+                        0 & 1 & 0.6 \\
+                        \hline
+                        1 & 0 & 0.6 \\
+                        \hline
+                        1 & 1 & 0.4 \\
+                        \hline
+                    \end{tabular}
+                \]
+            \subsubsection{p(a,b,c)=p(a)p(c|a)p(b|c)?}
+                We can now combine our previous calculus to try to show that $p(a,b,c)=p(a)p(c|a)p(b|c)$.
+                \[
+                    \begin{array}{|c|c|c|c|c|}
+                        \hline
+                        a & b & c & p(a, b, c) & p(a)p(c|a)p(b|c) \\
+                        \hline
+                        0 & 0 & 0 & 0.192 & 0.192 \\
+                        \hline
+                        0 & 0 & 1 & 0.144 & 0.144 \\
+                        \hline
+                        0 & 1 & 0 & 0.048 & 0.048 \\
+                        \hline
+                        0 & 1 & 1 & 0.216 & 0.216 \\
+                        \hline
+                        1 & 0 & 0 & 0.192 & 0.192 \\
+                        \hline
+                        1 & 0 & 1 & 0.064 & 0.064 \\
+                        \hline
+                        1 & 1 & 0 & 0.048 & 0.048 \\
+                        \hline
+                        1 & 1 & 1 & 0.096 & 0.096 \\
+                        \hline
+                    \end{array}
+                \]
+                Given those information, we can establish that $p(a,b,c)=p(a)p(c|a)p(b|c)$
             \subsubsection{Directed graph}
+                We can represent this distribution by a directed graph:
+                \begin{figure}[H]
+                    \centering
+                    \includegraphics[scale=0.5]{problem1/graph.png}
+                    \caption{Directed graph}
+                \end{figure}
     \section{Problem 2}
         \subsection{A}
             We begin with the whole set of example.\\
@@ -116,8 +270,6 @@
                 \includegraphics[scale=0.5]{problem2/graph.png}
                 \caption{Final decision tree}
             \end{figure}
-
-
     \section{Problem 3}
         \subsection{A}
             Lets map the four points in the $(x_1, x_1x_2)$ space
@@ -146,9 +298,6 @@
                 \includegraphics[scale=0.5]{problem3/x1-x2.png}
                 \caption{x1-x2 space}
             \end{figure}
-
-
-
     \section{Problem 4}
         \subsection{A}
             Here is a copy of the sigmoid function you can find on ``problem4/mnist.py''\\
