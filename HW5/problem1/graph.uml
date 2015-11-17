@@ -1,4 +1,20 @@
 @startuml
+skinparam shadowing false
+skinparam stereotypeCBackgroundColor #5B9BD5
+skinparam usecase {
+  BackgroundColor #EEEEEE
+  BorderColor #9E9E9E
+
+  ArrowColor #6CA43E
+  ActorBorderColor #6CA43E
+}
+
+skinparam note {
+  BackgroundColor #73AE42
+  BorderColor #6CA43E
+  FontColor white
+}
+
 (a) --> (c)
 (c) --> (b)
 
