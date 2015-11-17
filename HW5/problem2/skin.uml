@@ -1,0 +1,8 @@
+skinparam shadowing false
+skinparam stereotypeCBackgroundColor #5B9BD5
+
+skinparam class {
+  BackgroundColor #EEEEEE
+  ArrowColor #758A9F
+  BorderColor #FFFFFF
+}

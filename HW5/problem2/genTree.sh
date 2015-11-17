@@ -155,6 +155,7 @@ list=$(cat d | sed "s/ //g")
 nb=$(seq $(echo "$list"| head -n 1 | sed "s/[^,]//g" | wc -c))
 
 echo "@startuml" > graph.uml
+cat skin.uml >> graph.uml
 recc "0" "0" "0" "$nb" "$list"
 echo "hide empty methods" >> graph.uml
 echo "@enduml" >> graph.uml
