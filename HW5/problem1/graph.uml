@@ -1,4 +1,25 @@
 @startuml
 (a) --> (c)
 (c) --> (b)
+
+note right of (a)
+    p(a)
+    ==
+    0.40
+end note
+note right of (c)
+    a    p(c)
+    ==
+    T    0.40
+    ..
+    F    0.60
+end note
+note right of (b)
+    c    p(b)
+    ==
+    T    0.60
+    ..
+    F    0.20
+end note
+
 @enduml
