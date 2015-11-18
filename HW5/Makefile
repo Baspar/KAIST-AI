@@ -1,4 +1,6 @@
-all: graph doc mv pack pseudo-clean
+all: zip
+
+zip: pack pseudo-clean
 
 graph: graph1 graph2
 
@@ -8,10 +10,10 @@ graph1:
 graph2:
 	cd problem2; ./genTree.sh; plantuml graph.uml; cd ..
 
-mv: 
+mv:
 	mv "Homework5Solution.pdf" "20156441_bastien.pdf"
 
-doc:
+doc: graph
 	pdflatex  --shell-escape "Homework5Solution.tex" && pdflatex --shell-escape "Homework5Solution.tex"
 
 clean: pseudo-clean
@@ -20,5 +22,5 @@ clean: pseudo-clean
 pseudo-clean:
 	rm -rf "Homework5Solution.aux" "Homework5Solution.log" "Homework5Solution.toc" "_minted-Homework5Solution"
 
-pack:
+pack: doc mv
 	zip -r 20156441_bastien.zip "20156441_bastien.pdf" problem*
