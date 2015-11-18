@@ -7,7 +7,7 @@ np.random.seed(1) # DO NOT MODIFY THIS LINE!
 # NEURAL NETWORK CONFIGURATION
 size_of_layers = [
     28 * 28, # a size of the input layer (MNIST digit data consist of 28x28 pixels)
-    200, # [4.E] a size of the hidden layer
+    100, # [4.E] a size of the hidden layer
     10, # a size of the output layer
 ]
 
