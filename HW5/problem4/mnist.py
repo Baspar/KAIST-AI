@@ -40,10 +40,10 @@ def propagate(x):
     np.copyto(layers[0], x)
 
     #Compute y for the hidden layer
-    layers[1]=sigmoid(np.dot(layers[0], weights[0]))
+    layers[1]=sigmoid(layers[0].dot(weights[0]))
 
     #Compute y for the output layer
-    layers[2]=sigmoid(np.dot(layers[1], weights[1]))
+    layers[2]=sigmoid(layers[1].dot(weights[1]))
 
     return layers[2]
 
@@ -56,7 +56,7 @@ def backpropagate(y_true, learning_rate):
     outerr = layers[2]*(1-layers[2])*(y_true-layers[2]) #(1, 10)
 
     #Compute deltas for hidden layers
-    hiddenerr = layers[1]*(1-layers[1])*(outerr.dot(weights[1].T)) #(1, 50)
+    hiddenerr = layers[1]*(1-layers[1])*outerr.dot(weights[1].T) #(1, 50)
 
     #Change hidden-output weigths
     weights[1] = weights[1] + learning_rate*layers[1].T.dot(outerr) #(50, 10)
