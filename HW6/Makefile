@@ -5,7 +5,7 @@ zip: pack pseudo-clean
 graph: graph1
 
 graph1:
-	cd problem1; plantuml graph1.uml; cd ..
+	cd problem1; plantuml graph1.uml graph2.uml; cd ..
 
 mv:
 	mv "Homework6Solution.pdf" "20156441_bastien.pdf"
