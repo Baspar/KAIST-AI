@@ -1,0 +1,24 @@
+@startuml
+(VP) as (VP1)
+(VP) as (VP2)
+
+(S) -- (NP)
+    (NP) -- (DT)
+        (DT) -- (an)
+    (NP) -- (NN)
+        (NN) -- (actress)
+(S) -- (VP1)
+    (VP1) -- (VBZ)
+        (VBZ) -- (likes)
+    (VP1) -- (VP2)
+        (VP2) -- (VBG)
+            (VBG) -- (playing)
+        (VP2) -- (NNS)
+            (NNS) -- (kids)
+
+(an) . (actress)
+(actress) . (likes)
+(likes) . (playing)
+(playing) . (kids)
+
+@enduml
