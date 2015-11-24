@@ -23,7 +23,33 @@
 \newpage
     \section{Problem 1}
         \subsection{A}
+            With such a grammar, and for this given sentence, we can find 2 possible parse trees.\\
+            The difference between these two is if we consider ``playing'' either as a \textbf{JJ} or as a \textbf{VBZ}.
+            \begin{figure}[H]
+                \centering
+                \includegraphics[scale=0.5]{problem1/graph1.png}
+                \caption{$1^{st} graph$}
+                \includegraphics[scale=0.5]{problem1/graph2.png}
+                \caption{$2^{nd} graph$}
+            \end{figure}
+            \begin{figure}[H]
+                \centering
+                \includegraphics[scale=0.5]{problem1/graph2.png}
+                \caption{$2^{nd} graph$}
+            \end{figure}
         \subsection{B}
+            Given the sentence and the grammar we can build a CYK parser table.
+            \[
+                \begin{tabular}{r|ccccccccc}
+                    l=5 & S\\
+                    l=4 &  &\\
+                    l=3 &  &  & VP\\
+                    l=2 & NP &  &  & NP, VP\\
+                    l=1 & DT & NN & VBZ & JJ, VBG & NNS \\
+                    \hline
+                    & an & actress & likes & playing & kids \\
+                \end{tabular}
+            \]
     \section{Problem 2}
         \subsection{A}
         \subsection{B}
