@@ -61,11 +61,11 @@
         \subsection{A}
             Lets buidl 2 regular expression, one for URLs and the other for numbers:
             \begin{description}
-                \item[URLs]: $(\backslash w+://([Ww]\{3\})?|[Ww]\{3\})[A-Za-z0-9\_-]+?(\backslash .[A-Za-z0-9\_-]+)*\backslash .[A-Za-z]\{2,5\}(/[A-Za-z0-9\_-]+)*/?$\\
+                \item[URLs]: $(\backslash w+://|[Ww]\{3\}\backslash.)([A-Za-z0-9\_-]+\backslash .)*\backslash .[A-Za-z]\{2,5\}(/[A-Za-z0-9\_-]+)*/?$\\
                     To describe it more in detail:
                     \begin{itemize}
-                        \item $(\backslash w+://([Ww]\{3\})?|[Ww]\{3\})$ represents a pattern beginning by either ``XXX://'', ``XXX://www'' or ``www''. THis regexp won't recognize URLs like ``google.fr'', too close to some errors like ``Hello.How are you'' (Where Hello.How would be a website).
-                        \item $[A-Za-z0-9\_-]+?(\backslash .[A-Za-z0-9\_-]+)*\backslash .[A-Za-z]\{2,5\}$ represents the main part of the URL. It consists of a 1st part containing $[A-Za-z0-9\_-$], followed by 0+ identical block, separed by a dot. Then it is ended by a sequence of letter (between 2 and 5) (=the extension).
+                        \item $(\backslash w+://|[Ww]\{3\}\backslash.)$ represents a pattern beginning by either ``XXX://'', or ``www.''. THis regexp won't recognize URLs like ``google.fr'', too close to some errors like ``Hello.How are you'' (Where Hello.How would be a website).
+                        \item $([A-Za-z0-9\_-]+\backslash .)*\backslash .[A-Za-z]\{2,5\}$ represents the main part of the URL. It consists of a 1st part containing $[A-Za-z0-9\_-$], followed by 0+ identical block, separed by a dot. Then it is ended by a sequence of letter (between 2 and 5) (=the extension).
                         \item $(/[A-Za-z0-9\_-]+)*/?$ represents finaly the last part, the remaining part of the adresse, separated by slashes.
                     \end{itemize}
 
