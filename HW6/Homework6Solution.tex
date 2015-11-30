@@ -74,7 +74,8 @@
                     In the middle, there can be a least 3 digits (+2 at both ends, which make the 5 digits for the smallest phone numbers).\\
                     We also add the possibility to have space or syphen inside the number.
             \end{description}
-            On top of that, by looking at the training test case, we can see that there are a lot of price in spam cases. We will add a 3rd regexp for it.
+            On top of that, by looking at the training test case, we can see that there are a lot of price in spam cases. We will add a 3rd regexp for it.\\
+            (Important: since I'm on Linux, I have some problem with the file encoding. For this exercise, I've replace every ``£'' by a ``\$'' with another software -Vim-)
             \begin{description}
                 \item[Price]: $[$\euro£\$$][0-9]+([,\backslash.][0-9]+)?$
             \end{description}
