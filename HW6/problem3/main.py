@@ -19,9 +19,6 @@ p_spam=1.
 
 # [ 3-A ]
 def replace_regexp(string):
-    #Change string to lowercase
-    #string=string.lower()
-
     #Correct file encoding
     string=re.sub(r"&amp", " and ", string)
     string=re.sub(r"&lt[; ]", "<", string)
@@ -148,5 +145,3 @@ load_stopwords()
 with open("test") as test_file:
     for line in test_file:
         classify(line)
-#classify("ham|I, my name is bastien and i loooooooove going on bicycle on www.google.fr. Call me on +3376547")
-#print(vocab)
