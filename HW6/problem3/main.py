@@ -13,9 +13,15 @@ category_count_word={
     "spam":{"UNKNOWN":0},
     "ham":{"UNKNOWN":0}
 }
+stopwords=[]
+p_ham=1.
+p_spam=1.
 
 # [ 3-A ]
 def replace_regexp(string):
+    #Change string to lowercase
+    #string=string.lower()
+
     #Correct file encoding
     string=re.sub(r"&amp", " and ", string)
     string=re.sub(r"&lt[; ]", "<", string)
@@ -32,7 +38,15 @@ def replace_regexp(string):
 
     #Prices
     string=re.sub(r"\$[0-9]+([,\.][0-9]+)?", "<PRICE>", string)
+    string=re.sub(r"[0-9]+p", "<PRICE>", string)
+
+
+
+    #Remove useless punctuation
     string=re.sub(r"[\.\*#\\,\?!:;\"]", " ", string)
+
+    #Decimal
+    string=re.sub(r"\d[\d -]*\d", "<DECIMAL>", string)
 
     return string
 
@@ -70,15 +84,13 @@ def train(labels, strings):
             add_voc(label, word)
     return 0
 
-def complete_train():
-    #Loading stopWords
-    stopwords=[]
+def load_stopwords():
     print("Loading stopwords...")
     with open("stopwords.txt") as stopwords_file:
         for word in stopwords_file.readline().split(','):
             stopwords.append(word[1:-1])
     print("Stopwords loaded")
-
+def complete_train():
     #Loading and preprocessus training cases
     print("Loading and preprocess training cases...")
     labels=[]
@@ -100,4 +112,41 @@ def complete_train():
     train(labels, strings)
     print("Knowledge base trained")
 
-complete_train()
+    #Update total probability
+    ham=float(category_count["ham"])/sum(category_count.values())
+    spam=float(category_count["spam"])/sum(category_count.values())
+    return (ham, spam)
+
+# [ 3-F ]
+def classify(string):
+    (label,string) = string.split('|', 1)
+    words=do_stemming(filter_stopwords(replace_regexp(string), stopwords))
+    p_string_ham=1.
+    p_string_spam=1.
+    for word in words:
+        if word in vocab.keys():
+            p_word=float(vocab[word])/sum(vocab.values())
+
+            p_string_given_ham=float(category_count_word["ham"].get(word, 0))/category_count["ham"]
+            p_string_given_spam=float(category_count_word["spam"].get(word, 0))/category_count["spam"]
+
+            if(p_string_given_ham>0):
+                p_string_ham*=p_string_given_ham/p_word
+            if(p_string_given_spam>0):
+                p_string_spam*=p_string_given_spam/p_word
+
+    if(p_string_spam>p_string_ham):
+        print(label+" <=> spam")
+    else:
+        print(label+" <=> ham")
+
+
+load_stopwords()
+(p_ham, p_spam) = complete_train()
+
+
+with open("test") as test_file:
+    for line in test_file:
+        classify(line)
+#classify("ham|I, my name is bastien and i loooooooove going on bicycle on www.google.fr. Call me on +3376547")
+#print(vocab)
