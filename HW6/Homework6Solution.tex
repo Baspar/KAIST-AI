@@ -1,6 +1,7 @@
 \documentclass{article}
 \usepackage[usenames,dvipsnames]{xcolor}
 \usepackage{array}
+\usepackage{eurosym}
 \usepackage{minted}
 \usepackage{float}
 \usepackage{amsmath}
@@ -75,7 +76,7 @@
             \end{description}
             On top of that, by looking at the training test case, we can see that there are a lot of price in spam cases. We will add a 3rd regexp for it.
             \begin{description}
-                \item[Price]: $[\$£€][0-9]+([,\backslash.][0-9]+)?$
+                \item[Price]: $[$\euro£\$$][0-9]+([,\backslash.][0-9]+)?$
             \end{description}
 
         \subsection{B}
