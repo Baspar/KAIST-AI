@@ -16,12 +16,23 @@ category_count_word={
 
 # [ 3-A ]
 def replace_regexp(string):
+    #Correct file encoding
+    string=re.sub(r"&amp", " and ", string)
+    string=re.sub(r"&lt[; ]", "<", string)
+    string=re.sub(r"&gt[; ]", ">", string)
+
+    #Recover "previous" markers
+    string=re.sub(r"<.*?>", "<DECIMAL>", string)
+
     #URLs
     string=re.sub(r"(\w+://|[Ww]{3}\.)([A-Za-z0-9_-]+\.)+[A-Za-z]{2,5}(/[A-Za-z0-9_-]+)*/?", "<URL>", string)
+
     #Phone
     string=re.sub(r"\+?[0-9][0-9 -]{3,}[0-9]\+?", "<PHONE>", string)
-    #Prices TODO: add pounds and euro
-    string=re.sub(r"[$][0-9]+([,\.][0-9]+)?", "<PRICE>", string)
+
+    #Prices
+    string=re.sub(r"\$[0-9]+([,\.][0-9]+)?", "<PRICE>", string)
+    string=re.sub(r"[\.\*#\\,\?!:;\"]", " ", string)
 
     return string
 
@@ -68,8 +79,7 @@ def complete_train():
             stopwords.append(word[1:-1])
     print("Stopwords loaded")
 
-
-
+    #Loading and preprocessus training cases
     print("Loading and preprocess training cases...")
     labels=[]
     strings=[]
@@ -85,6 +95,7 @@ def complete_train():
             strings.append(stemmed_word)
     print("Training cases loaded and preprocessed")
 
+    #Training knowledge base
     print("Training knowledge base...")
     train(labels, strings)
     print("Knowledge base trained")
