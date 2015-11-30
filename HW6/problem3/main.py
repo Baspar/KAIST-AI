@@ -20,7 +20,7 @@ p_spam=1.
 # [ 3-A ]
 def replace_regexp(string):
     #Correct file encoding
-    string=re.sub(r"&amp", " and ", string)
+    string=re.sub(r"&amp", " & ", string)
     string=re.sub(r"&lt[; ]", "<", string)
     string=re.sub(r"&gt[; ]", ">", string)
 
@@ -37,13 +37,8 @@ def replace_regexp(string):
     string=re.sub(r"\$[0-9]+([,\.][0-9]+)?", "<PRICE>", string)
     string=re.sub(r"[0-9]+p", "<PRICE>", string)
 
-
-
     #Remove useless punctuation
     string=re.sub(r"[\.\*#\\,\?!:;\"]", " ", string)
-
-    #Decimal
-    string=re.sub(r"\d[\d -]*\d", "<DECIMAL>", string)
 
     return string
 
