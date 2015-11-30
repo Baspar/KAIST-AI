@@ -21,8 +21,6 @@ def filter_stopwords(string, stopwords):
 # [ 3-C ]
 VOCMAX=10000
 
-
-
 # [ 3-D ]
 def do_stemming(string):
     stemmer = PorterStemmer()
@@ -32,10 +30,7 @@ def do_stemming(string):
 def add_voc(label, string):
     if(string in vocab.keys): #If we have already seen this word
         vocab[string]+=1
-        if(string in category_count_word[label]): #If we have seen it in this category
-            category_count_word[label][string]+=1
-        else:#First time we see it uin thi category
-            category_count_word[label][string]=1
+        category_count_word[label][string]=category_count_word[label].get(string, 0)+1
     elif(vocab.size<=VOCMAX):#New word, doesn't exceed the max size of the voc
         vocab[string]=1
         category_count_word[label][string]=1
@@ -46,6 +41,6 @@ def add_voc(label, string):
 def train(labels, strings):
     for label, string in labels, strings:
         category_count[label]+=1
-        for word in string.split(' '):
+        for word in string:
             add_voc(label, word)
     return 0
