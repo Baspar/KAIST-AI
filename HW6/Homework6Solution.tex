@@ -59,7 +59,7 @@
     \newpage
     \section{Problem 3}
         \subsection{A}
-            Lets buidl 2 regular expression, one for URLs and the other for numbers:
+            Lets build 2 regular expression, one for URLs and the other for numbers:
             \begin{description}
                 \item[URLs]: $(\backslash w+://|[Ww]\{3\}\backslash.)([A-Za-z0-9\_-]+\backslash .)*\backslash .[A-Za-z]\{2,5\}(/[A-Za-z0-9\_-]+)*/?$\\
                     To describe it more in detail:
@@ -68,8 +68,16 @@
                         \item $([A-Za-z0-9\_-]+\backslash .)*\backslash .[A-Za-z]\{2,5\}$ represents the main part of the URL. It consists of a 1st part containing $[A-Za-z0-9\_-$], followed by 0+ identical block, separed by a dot. Then it is ended by a sequence of letter (between 2 and 5) (=the extension).
                         \item $(/[A-Za-z0-9\_-]+)*/?$ represents finaly the last part, the remaining part of the adresse, separated by slashes.
                     \end{itemize}
-
+                \item[Phone Numbers]: $\backslash+?[0-9][0-9 -]\{3,\}[0-9]\backslash+?$\\
+                    This one is really simple. We just add the cases with ``+'' at the beginning and the end of the number, and we check that the number begins with a digit, and ends with it.\\
+                    In the middle, there can be a least 3 digits (+2 at both ends, which make the 5 digits for the smallest phone numbers).\\
+                    We also add the possibility to have space or syphen inside the number.
             \end{description}
+            On top of that, by looking at the training test case, we can see that there are a lot of price in spam cases. We will add a 3rd regexp for it.
+            \begin{description}
+                \item[Price]: $[\$£€][0-9]+([,\backslash.][0-9]+)?$
+            \end{description}
+
         \subsection{B}
         \subsection{C}
         \subsection{D}
