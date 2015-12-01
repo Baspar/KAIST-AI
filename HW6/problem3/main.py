@@ -28,7 +28,7 @@ def replace_regexp(string):
     string=re.sub(r"<.*?>", "<DECIMAL>", string)
 
     #URLs
-    string=re.sub(r"(\w+://|[Ww]{3}\.)([A-Za-z0-9_-]+\.)+[A-Za-z]{2,5}(/[A-Za-z0-9_-]+)*/?", "<URL>", string)
+    string=re.sub(r"([Hh][Tt][Tt][Pp][Ss]?://|[Ww]{3}\.)([A-Za-z0-9_ -]+\.)+[A-Za-z]{2,5}[A-Za-z0-9/_?=-]*", "<URL>", string)
 
     #Phone
     string=re.sub(r"\+?[0-9][0-9 -]{3,}[0-9]\+?", "<PHONE>", string)
