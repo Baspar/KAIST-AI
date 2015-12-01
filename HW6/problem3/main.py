@@ -4,6 +4,7 @@ from nltk import PorterStemmer
 import re
 
 
+#Sorted voc+cardinality
 vocab={"UNKNOWN":0}
 category_count={
     "spam":0,
@@ -13,9 +14,25 @@ category_count_word={
     "spam":{"UNKNOWN":0},
     "ham":{"UNKNOWN":0}
 }
+
+#List of stopwords
 stopwords=[]
+
+#Total probabilities
 p_ham=1.
 p_spam=1.
+
+#Test sorting
+test_sorting={
+    "ham":{
+        True:0,
+        False:0
+    },
+    "spam":{
+        True:0,
+        False:0
+    }
+}
 
 # [ 3-A ]
 def replace_regexp(string):
@@ -111,7 +128,6 @@ def complete_train():
 
 # [ 3-F ]
 def classify(string):
-    (label,string) = string.split('|', 1)
     words=do_stemming(filter_stopwords(replace_regexp(string), stopwords))
     p_string_ham=1.
     p_string_spam=1.
@@ -128,15 +144,43 @@ def classify(string):
                 p_string_spam*=p_string_given_spam/p_word
 
     if(p_string_spam>p_string_ham):
-        print(label+" <=> spam")
+        return "spam"
     else:
-        print(label+" <=> ham")
+        return "ham"
 
 
+#Training loading
 load_stopwords()
 (p_ham, p_spam) = complete_train()
 
-
+#Test cases
 with open("test") as test_file:
     for line in test_file:
-        classify(line)
+        (label,string) = line.split('|', 1)
+        predicted_label=classify(string)
+
+        is_correct=(label==predicted_label)
+
+        test_sorting[label][is_correct]+=1
+
+#Precision/recall/f1 computation
+precis_ham=float(test_sorting["ham"][True])/(test_sorting["ham"][True]+test_sorting["ham"][False])
+recall_ham=float(test_sorting["ham"][True])/(test_sorting["ham"][True]+test_sorting["spam"][False])
+f1meas_ham=2*precis_ham*recall_ham/(precis_ham+recall_ham)
+precis_spam=float(test_sorting["spam"][True])/(test_sorting["spam"][True]+test_sorting["spam"][False])
+recall_spam=float(test_sorting["spam"][True])/(test_sorting["spam"][True]+test_sorting["ham"][False])
+f1meas_spam=2*precis_spam*recall_spam/(precis_spam+recall_spam)
+
+#Print result
+print("\nPrecision of ham")
+print(precis_ham)
+print("Recall of ham")
+print(recall_ham)
+print("f1-measure of ham")
+print(f1meas_ham)
+print("\nPrecision of spam")
+print(precis_spam)
+print("Recall of spam")
+print(recall_spam)
+print("f1-measure of spam")
+print(f1meas_spam)
