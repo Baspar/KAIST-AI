@@ -28,23 +28,23 @@
             The difference between these two is if we consider ``playing'' either as a \textbf{JJ} or as a \textbf{VBZ}.
             \begin{figure}[H]
                 \centering
-                \includegraphics[scale=0.5]{problem1/graph1.png}
+                \includegraphics[scale = 0.5]{problem1/graph1.png}
                 \caption{$1^{st} graph$}
             \end{figure}
             \begin{figure}[H]
                 \centering
-                \includegraphics[scale=0.5]{problem1/graph2.png}
+                \includegraphics[scale = 0.5]{problem1/graph2.png}
                 \caption{$2^{nd} graph$}
             \end{figure}
         \subsection{B}
             Given the sentence and the grammar we can build a CYK parser table.
             \[
                 \begin{tabular}{r|ccccccccc}
-                    l=5 & S\\
-                    l=4 &  &\\
-                    l=3 &  &  & VP\\
-                    l=2 & NP &  &  & NP, VP\\
-                    l=1 & DT & NN & VBZ & JJ, VBG & NNS \\
+                    l = 5 & S\\
+                    l = 4 &  &\\
+                    l = 3 &  &  & VP\\
+                    l = 2 & NP &  &  & NP, VP\\
+                    l = 1 & DT & NN & VBZ & JJ, VBG & NNS \\
                     \hline
                     & an & actress & likes & playing & kids \\
                 \end{tabular}
@@ -60,29 +60,138 @@
         \subsection{A}
             Lets build 2 regular expression, one for URLs and the other for numbers:
             \begin{description}
-                \item[URLs]: $(\backslash w+://|[Ww]\{3\}\backslash.)([A-Za-z0-9\_-]+\backslash .)*\backslash .[A-Za-z]\{2,5\}(/[A-Za-z0-9\_-]+)*/?$\\
-                    To describe it more in detail:
-                    \begin{itemize}
-                        \item $(\backslash w+://|[Ww]\{3\}\backslash.)$ represents a pattern beginning by either ``XXX://'', or ``www.''. THis regexp won't recognize URLs like ``google.fr'', too close to some errors like ``Hello.How are you'' (Where Hello.How would be a website).
-                        \item $([A-Za-z0-9\_-]+\backslash .)*\backslash .[A-Za-z]\{2,5\}$ represents the main part of the URL. It consists of a 1st part containing $[A-Za-z0-9\_-$], followed by 0+ identical block, separed by a dot. Then it is ended by a sequence of letter (between 2 and 5) (=the extension).
-                        \item $(/[A-Za-z0-9\_-]+)*/?$ represents finaly the last part, the remaining part of the adresse, separated by slashes.
-                    \end{itemize}
+                \item[URLs]: $([Hh][Tt][Tt][Pp][Ss]?://|[Ww]\{3\}\backslash .)([A-Za-z0-9_ -]+\backslash .)+[A-Za-z]\{2,5\}[A-Za-z0-9/_? = -]*$\\
+                    It allows us to catch URLs which looks like ``http://XXX.com'' or ``www.XXX.com''.\\
+                    The end of the regexp matches the remaining part of the URL, containing the folders, variable for PH, ect..
                 \item[Phone Numbers]: $\backslash+?[0-9][0-9 -]\{3,\}[0-9]\backslash+?$\\
                     This one is really simple. We just add the cases with ``+'' at the beginning and the end of the number, and we check that the number begins with a digit, and ends with it.\\
                     In the middle, there can be a least 3 digits (+2 at both ends, which make the 5 digits for the smallest phone numbers).\\
                     We also add the possibility to have space or syphen inside the number.
             \end{description}
             On top of that, by looking at the training test case, we can see that there are a lot of price in spam cases. We will add a 3rd regexp for it.\\
+            There are 2 cases: `` \$XXX,XXX.XXX'' and ``XXX,XXX.XXXp''\\
             (Important: since I'm on Linux, I have some problem with the file encoding. For this exercise, I've replace every ``£'' by a ``\$'' with another software -Vim-)
             \begin{description}
-                \item[Price]: $[$\euro£\$$][0-9]+([,\backslash.][0-9]+)?$
+                \item[Price]: $[$\euro£\$$][0-9]+([,\backslash.][0-9]+)?$ or $[0-9]+([,\backslash.][0-9]+)?p$
             \end{description}
 
+            You can find below the used code:
+            \begin{minted}[linenos, breaklines]{python}
+def replace_regexp(string):
+    #Correct file encoding
+    string = re.sub(r"&amp", " & ", string)
+    string = re.sub(r"&lt[; ]", "<", string)
+    string = re.sub(r"&gt[; ]", ">", string)
+
+    #Recover "previous" markers
+    string = re.sub(r"<.*?>", "<DECIMAL>", string)
+
+    #URLs
+    string = re.sub(r"([Hh][Tt][Tt][Pp][Ss]?://|[Ww]{3}\.)([A-Za-z0-9_ -]+\.)+[A-Za-z]{2,5}[A-Za-z0-9/_? = -]*", "<URL>", string)
+
+    #Phone
+    string = re.sub(r"\+?[0-9][0-9 -]{3,}[0-9]\+?", "<PHONE>", string)
+
+    #Prices
+    string = re.sub(r"\$[0-9]+([,\.][0-9]+)?", "<PRICE>", string)
+    string = re.sub(r"[0-9]+p", "<PRICE>", string)
+
+    #Remove useless punctuation
+    string = re.sub(r"[\.\*#\\,\?!:;\"]", " ", string)
+
+    return string
+            \end{minted}
         \subsection{B}
+            \begin{minted}[linenos, breaklines]{python}
+def filter_stopwords(string, stopwords):
+    tweet = TweetTokenizer()
+    return [x for x in tweet.tokenize(string) if x not in stopwords]
+            \end{minted}
         \subsection{C}
+            In order to store the vocabulary, we'll use a dictionary, and we will include the notion of ``maximum size'' with a method add\_voc(label, word) (The label will be used for Bayes classifier)
+            \begin{minted}[linenos, breaklines]{python}
+VOCMAX = 10000
+def add_voc(label, string):
+    #If we have already seen this word
+    if(string in vocab.keys()):
+        vocab[string]+ = 1
+        category_count_word[label][string] = category_count_word[label].get(string, 0)+1
+    #New word, doesn't exceed the max size of the voc
+    elif(len(vocab)< = VOCMAX):
+        vocab[string] = 1
+        category_count_word[label][string] = 1
+    #We exceed the max size of the voc
+    else:
+        vocab["UNKNOWN"]+ = 1
+        category_count_word[label]["UNKNOWN"]+ = 1
+            \end{minted}
         \subsection{D}
+        This function is just using the PorterStemmer object.
+            \begin{minted}[linenos, breaklines]{python}
+def do_stemming(string):
+    stemmer = PorterStemmer()
+    return [stemmer.stem(word) for word in string]
+            \end{minted}
         \subsection{E}
+            This method is really straight foward.\\
+            We just found again the manipulation on category\_count, like in add\_voc(label, word)
+            \begin{minted}[linenos, breaklines]{python}
+def train(labels, strings):
+    for (label, string) in zip(labels, strings):
+        category_count[label]+ = 1
+        for word in string:
+            add_voc(label, word)
+            \end{minted}
         \subsection{F}
+            To implement this method, we have to find which the greater probability between $P(ham|string)$ and $P(spam|string)$
+            We will manipulate the equation a bit:
+            \[
+                \begin{tabular}{rcl}
+                    P(label|string) & = & $\frac{P(string|label)*P(label)}{P(string)}$
+                \end{tabular}
+            \]
+            In our case, we can remove $P(string)$, since it's a constant, and we want to find the biggest probability
+            \[
+                \begin{tabular}{rcl}
+                    P(label|string) &$\approx$& P(string|label)*P(label)\\
+                    & = & $P(label)*\sum_{word}P(word|label)$\\
+                    & = & $P(label)*\sum_{word}\frac{P(word, label)}{P(word)}$\\
+                \end{tabular}
+            \]
+            \begin{minted}[linenos, breaklines]{python}
+def classify(string):
+    #Preprocessing of the word
+    words = do_stemming(filter_stopwords(replace_regexp(string), stopwords))
+
+    #Initialize total probability
+    p_ham_given_string = 1.
+    p_spam_given_string = 1.
+
+    for word in words:
+        #If the word is not in our vocabulary, be won't consider it
+        if word in vocab.keys():
+            #Computation of p(word)
+            p_word = float(vocab[word])/sum(vocab.values())
+
+            #Computation of p(string, label) for both labels.
+            #Method get(word, 0) return 0 if word isn't a key of the dictionnary
+            p_string_and_ham = float(category_count_word["ham"].get(word, 0))/category_count["ham"]
+            p_string_and_spam = float(category_count_word["spam"].get(word, 0))/category_count["spam"]
+
+            #If one of our probability is 0, that is to say the word isn't in the category vocabulary.
+            #We won't consider it
+            #Else, we compute p(label|word) = p(label, word)/p(word), and multiply it to get p(label|string)
+            if(p_string_and_ham>0):
+                p_ham_given_string *= p_string_and_ham/p_word
+            if(p_string_and_spam>0):
+                p_spam_given_string *= p_string_and_spam/p_word
+
+    #We choose the best conditional probability
+    if(p_spam_given_string>p_ham_given_string):
+        return "spam"
+    else:
+        return "ham"
+            \end{minted}
         \subsection{G}
             If we quickly sort the results, we can make this array:
             \[
