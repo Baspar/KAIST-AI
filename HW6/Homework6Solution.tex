@@ -30,8 +30,6 @@
                 \centering
                 \includegraphics[scale=0.5]{problem1/graph1.png}
                 \caption{$1^{st} graph$}
-                \includegraphics[scale=0.5]{problem1/graph2.png}
-                \caption{$2^{nd} graph$}
             \end{figure}
             \begin{figure}[H]
                 \centering
@@ -86,4 +84,20 @@
         \subsection{E}
         \subsection{F}
         \subsection{G}
+            If we quiclky sort the results, we can make this array:
+            \[
+                \begin{tabular}{|c|c|c|}
+                    \hline
+                    True label & Estimated label & Number of concerned cases\\
+                    \hline
+                    Spam & Ham & 3\\
+                    \hline
+                    Ham & Spam & 54\\
+                    \hline
+                    Spam & Spam & 147\\
+                    \hline
+                    Ham & Ham & 912\\
+                    \hline
+                \end{tabular}
+            \]
 \end{document}
