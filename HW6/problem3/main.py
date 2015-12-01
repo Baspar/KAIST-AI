@@ -101,7 +101,7 @@ def load_stopwords():
     print("Stopwords loaded")
 def complete_train():
     #Loading and preprocessus training cases
-    print("Loading and preprocess training cases...")
+    print("\nLoading and preprocess training cases...")
     labels=[]
     strings=[]
     with open("train") as train_file:
@@ -117,7 +117,7 @@ def complete_train():
     print("Training cases loaded and preprocessed")
 
     #Training knowledge base
-    print("Training knowledge base...")
+    print("\nTraining knowledge base...")
     train(labels, strings)
     print("Knowledge base trained")
 
@@ -154,6 +154,7 @@ load_stopwords()
 (p_ham, p_spam) = complete_train()
 
 #Test cases
+print("\nRunnin tests...")
 with open("test") as test_file:
     for line in test_file:
         (label,string) = line.split('|', 1)
@@ -162,6 +163,7 @@ with open("test") as test_file:
         is_correct=(label==predicted_label)
 
         test_sorting[label][is_correct]+=1
+print("Tests ran")
 
 #Precision/recall/f1 computation
 precis_ham=float(test_sorting["ham"][True])/(test_sorting["ham"][True]+test_sorting["ham"][False])
