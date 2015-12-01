@@ -66,12 +66,6 @@ def filter_stopwords(string, stopwords):
 
 # [ 3-C ]
 VOCMAX=10000
-# [ 3-D ]
-def do_stemming(string):
-    stemmer = PorterStemmer()
-    return [stemmer.stem(word) for word in string]
-
-# [ 3-E ]
 def add_voc(label, string):
     #If we have already seen this word
     if(string in vocab.keys()):
@@ -86,6 +80,12 @@ def add_voc(label, string):
         vocab["UNKNOWN"]+=1
         category_count_word[label]["UNKNOWN"]+=1
 
+# [ 3-D ]
+def do_stemming(string):
+    stemmer = PorterStemmer()
+    return [stemmer.stem(word) for word in string]
+
+# [ 3-E ]
 def train(labels, strings):
     for (label, string) in zip(labels, strings):
         category_count[label]+=1
@@ -128,22 +128,34 @@ def complete_train():
 
 # [ 3-F ]
 def classify(string):
+    #Preprocessing of the word
     words=do_stemming(filter_stopwords(replace_regexp(string), stopwords))
-    p_string_ham=1.
-    p_string_spam=1.
+
+    #Initialize total probability
+    p_ham_given_string=1.
+    p_spam_given_string=1.
+
     for word in words:
+        #If the word is not in our vocabulary, be won't consider it
         if word in vocab.keys():
+            #Computation of p(word)
             p_word=float(vocab[word])/sum(vocab.values())
 
-            p_string_given_ham=float(category_count_word["ham"].get(word, 0))/category_count["ham"]
-            p_string_given_spam=float(category_count_word["spam"].get(word, 0))/category_count["spam"]
+            #Computation of p(string, label) for both labels.
+            #Method get(word, 0) return 0 if word isn't a key of the dictionnary
+            p_string_and_ham=float(category_count_word["ham"].get(word, 0))/category_count["ham"]
+            p_string_and_spam=float(category_count_word["spam"].get(word, 0))/category_count["spam"]
 
-            if(p_string_given_ham>0):
-                p_string_ham*=p_string_given_ham/p_word
-            if(p_string_given_spam>0):
-                p_string_spam*=p_string_given_spam/p_word
+            #If one of our probability is 0, that is to say the word isn't in the category vocabulary.
+            #We won't consider it
+            #Else, we compute p(label|word)=p(label, word)/p(word), and multiply it to get p(label|string)
+            if(p_string_and_ham>0):
+                p_ham_given_string*=p_string_and_ham/p_word
+            if(p_string_and_spam>0):
+                p_spam_given_string*=p_string_and_spam/p_word
 
-    if(p_string_spam>p_string_ham):
+    #We choose the best conditional probability
+    if(p_spam_given_string>p_ham_given_string):
         return "spam"
     else:
         return "ham"
