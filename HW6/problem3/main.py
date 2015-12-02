@@ -2,6 +2,7 @@
 from nltk.tokenize import TweetTokenizer
 from nltk import PorterStemmer
 import re
+import sys
 
 
 #Sorted voc+cardinality
@@ -87,7 +88,12 @@ def do_stemming(string):
 
 # [ 3-E ]
 def train(labels, strings):
+    size=len(labels)
+    i=0
     for (label, string) in zip(labels, strings):
+        i+=1
+        sys.stdout.write ("["+str(i)+"/"+str(size)+"]" + chr(13))
+        sys.stdout.flush()
         category_count[label]+=1
         for word in string:
             add_voc(label, word)
@@ -95,8 +101,13 @@ def train(labels, strings):
 
 def load_stopwords():
     print("Loading stopwords...")
+    size=sum(1 for line in open('stopwords.txt'))
+    i=0
     with open("stopwords.txt") as stopwords_file:
         for word in stopwords_file.readline().split(','):
+            i+=1
+            sys.stdout.write ("["+str(i)+"/"+str(size)+"]" + chr(13))
+            sys.stdout.flush()
             stopwords.append(word[1:-1])
     print("Stopwords loaded")
 def complete_train():
@@ -104,8 +115,14 @@ def complete_train():
     print("\nLoading and preprocess training cases...")
     labels=[]
     strings=[]
+    size=sum(1 for line in open('train'))
     with open("train") as train_file:
+        i=0
         for line in train_file:
+            i+=1
+            sys.stdout.write ("["+str(i)+"/"+str(size)+"]" + chr(13))
+            sys.stdout.flush()
+
             [label, string]=line.split('|', 1)
 
             raw_string=replace_regexp(string)
@@ -167,8 +184,14 @@ load_stopwords()
 
 #Test cases
 print("\nRunnin tests...")
+size=sum(1 for line in open('test'))
 with open("test") as test_file:
+    i=0
     for line in test_file:
+        i+=1
+        sys.stdout.write ("["+str(i)+"/"+str(size)+"]" + chr(13))
+        sys.stdout.flush()
+
         (label,string) = line.split('|', 1)
         predicted_label=classify(string)
 
