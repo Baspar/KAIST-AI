@@ -4,7 +4,7 @@ doc:
 	pdflatex "Homework1Solution.tex" && pdflatex "Homework1Solution.tex"
 
 clean: pseudo-clean
-	rm -f "Homework1Solution.pdf"
+	rm -f "20156441_bastien.pdf" "20156441_bastien.zip"
 
 pseudo-clean:
 	rm -f "Homework1Solution.aux" "Homework1Solution.log" "Homework1Solution.toc"
