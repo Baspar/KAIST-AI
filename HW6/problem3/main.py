@@ -91,9 +91,11 @@ def train(labels, strings):
     size=len(labels)
     i=0
     for (label, string) in zip(labels, strings):
+        #Write number of case computed
         i+=1
         sys.stdout.write ("["+str(i)+"/"+str(size)+"]" + chr(13))
         sys.stdout.flush()
+
         category_count[label]+=1
         for word in string:
             add_voc(label, word)
@@ -105,9 +107,11 @@ def load_stopwords():
     i=0
     with open("stopwords.txt") as stopwords_file:
         for word in stopwords_file.readline().split(','):
+            #Write number of case computed
             i+=1
             sys.stdout.write ("["+str(i)+"/"+str(size)+"]" + chr(13))
             sys.stdout.flush()
+
             stopwords.append(word[1:-1])
     print("Stopwords loaded")
 def complete_train():
@@ -119,6 +123,7 @@ def complete_train():
     with open("train") as train_file:
         i=0
         for line in train_file:
+            #Write number of case computed
             i+=1
             sys.stdout.write ("["+str(i)+"/"+str(size)+"]" + chr(13))
             sys.stdout.flush()
@@ -188,6 +193,7 @@ size=sum(1 for line in open('test'))
 with open("test") as test_file:
     i=0
     for line in test_file:
+        #Write number of case computed
         i+=1
         sys.stdout.write ("["+str(i)+"/"+str(size)+"]" + chr(13))
         sys.stdout.flush()
@@ -198,7 +204,7 @@ with open("test") as test_file:
         is_correct=(label==predicted_label)
 
         test_sorting[label][is_correct]+=1
-print("Tests ran")
+print("Tests ran  ")
 
 #Precision/recall/f1 computation
 precis_ham=float(test_sorting["ham"][True])/(test_sorting["ham"][True]+test_sorting["ham"][False])
