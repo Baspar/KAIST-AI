@@ -172,8 +172,8 @@ def train(labels, strings):
             \[
                 \begin{tabular}{rcl}
                     P(label|string) &$\approx$& P(string|label)*P(label)\\
-                    & = & $P(label)*\sum_{word}P(word|label)$\\
-                    & = & $P(label)*\sum_{word}\frac{P(word, label)}{P(word)}$\\
+                    & = & $P(label)*\prod_{word}P(word|label)$\\
+                    & = & $P(label)*\prod_{word}\frac{P(word, label)}{P(word)}$\\
                 \end{tabular}
             \]
             \begin{minted}[linenos, breaklines]{python}
