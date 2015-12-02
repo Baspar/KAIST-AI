@@ -25,7 +25,7 @@
     \section{Problem 1}
         \subsection{A}
             With such a grammar, and for this given sentence, we can find 2 possible parse trees.\\
-            The difference between these two is if we consider ``playing'' either as a \textbf{JJ} or as a \textbf{VBZ}.
+            The difference between these two is that we can consider the word ``playing'' either as a \textbf{JJ} or as a \textbf{VBZ}.
             \begin{figure}[H]
                 \centering
                 \includegraphics[scale = 0.5]{problem1/graph1.png}
@@ -37,7 +37,7 @@
                 \caption{$2^{nd} graph$}
             \end{figure}
         \subsection{B}
-            Given the sentence and the grammar we can build a CYK parser table.
+            Given the sentence and the grammar we can build the following CYK parser table:
             \[
                 \begin{tabular}{r|ccccccccc}
                     l = 5 & S\\
@@ -75,9 +75,9 @@
     \newpage
     \section{Problem 3}
         \subsection{A}
-            Lets build 2 regular expression, one for URLs and the other for numbers:
+            Lets build 2 regular expressions, one for URLs and the other for numbers:
             \begin{description}
-                \item[URLs]: $([Hh][Tt][Tt][Pp][Ss]?://|[Ww]\{3\}\backslash .)([A-Za-z0-9_ -]+\backslash .)+[A-Za-z]\{2,5\}[A-Za-z0-9/_? = -]*$\\
+                \item[URLs]: $([Hh][Tt][Tt][Pp][Ss]?://|[Ww]\{3\}\backslash .)([A-Za-z0-9\_ -]+\backslash .)+[A-Za-z]\{2,5\}[A-Za-z0-9/\_? = -]*$\\
                     It allows us to catch URLs which looks like ``http://XXX.com'' or ``www.XXX.com''.\\
                     The end of the regexp matches the remaining part of the URL, containing the folders, variable for PH, ect..
                 \item[Phone Numbers]: $\backslash+?[0-9][0-9 -]\{3,\}[0-9]\backslash+?$\\
@@ -89,7 +89,8 @@
             There are 2 cases: `` \$XXX,XXX.XXX'' and ``XXX,XXX.XXXp''\\
             (Important: since I'm on Linux, I have some problem with the file encoding. For this exercise, I've replace every ``£'' by a ``\$'' with another software -Vim-)
             \begin{description}
-                \item[Price]: $[$\euro£\$$][0-9]+([,\backslash.][0-9]+)?$ or $[0-9]+([,\backslash.][0-9]+)?p$
+                \item[Price1]: $[$\euro£\$$][0-9]+([,\backslash.][0-9]+)?$
+                \item[Price2]: $[0-9]+([,\backslash.][0-9]+)?p$
             \end{description}
 
             You can find below the used code:
